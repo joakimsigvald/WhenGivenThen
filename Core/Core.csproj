@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Base classes and utilities for building Unit tests based on XUnit and Given-When-Then pattern</Description>
+    <VersionPrefix></VersionPrefix>
+    <Authors>Adlibris</Authors>
+	  <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <AssemblyName>Applique.GivenWhenThen.Core</AssemblyName>
+	  <RootNamespace>Applique.GivenWhenThen.Core</RootNamespace>
+	  <IsPackable>true</IsPackable>
+    <PackageTags>xunit test given-when-then</PackageTags>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>http://git.adnet.adlibris.se/Merkurius/Nuget/b2l-test.git</PackageProjectUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <RepositoryUrl>http://git.adnet.adlibris.se/Merkurius/Nuget/b2l-test.git</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+</Project>
