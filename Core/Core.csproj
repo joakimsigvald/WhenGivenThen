@@ -5,8 +5,8 @@
     <VersionPrefix></VersionPrefix>
     <Authors>Adlibris</Authors>
 	  <TargetFramework>netcoreapp3.1</TargetFramework>
-	  <AssemblyName>Applique.GivenWhenThen.Core</AssemblyName>
-	  <RootNamespace>Applique.GivenWhenThen.Core</RootNamespace>
+	  <AssemblyName>Applique.WhenGivenThen.Core</AssemblyName>
+	  <RootNamespace>Applique.WhenGivenThen.Core</RootNamespace>
 	  <IsPackable>true</IsPackable>
     <PackageTags>xunit test given-when-then</PackageTags>
     <PackageIconUrl></PackageIconUrl>

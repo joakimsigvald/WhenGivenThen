@@ -1,4 +1,4 @@
-﻿namespace Applique.GivenWhenThen.Core
+﻿namespace Applique.WhenGivenThen.Core
 {
     public abstract class TestStatic<TResult> : TestBase<TResult>
     {

@@ -1,10 +1,10 @@
-﻿namespace Applique.GivenWhenThen.Core.Test.Subjects
+﻿namespace Applique.WhenGivenThen.Core.Test.Subjects
 {
     public class ShoppingService
     {
         private readonly IOrderService _anotherService;
 
-        public ShoppingService(IOrderService orderService) 
+        public ShoppingService(IOrderService orderService)
             => _anotherService = orderService;
 
         public ShoppingCart CreateCart(int id)

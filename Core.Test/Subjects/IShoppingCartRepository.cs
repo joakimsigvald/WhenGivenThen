@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Applique.GivenWhenThen.Core.Test.Subjects
+namespace Applique.WhenGivenThen.Core.Test.Subjects
 {
     public interface IShoppingCartRepository
     {

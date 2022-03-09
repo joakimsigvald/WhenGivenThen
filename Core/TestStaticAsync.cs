@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Applique.GivenWhenThen.Core
+namespace Applique.WhenGivenThen.Core
 {
     public abstract class TestStaticAsync<TResult> : TestStatic<TResult>
     {

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>Applique.GivenWhenThen.Core.Test</AssemblyName>
-    <RootNamespace>Applique.GivenWhenThen.Core.Test</RootNamespace>
+    <AssemblyName>Applique.WhenGivenThen.Core.Test</AssemblyName>
+    <RootNamespace>Applique.WhenGivenThen.Core.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

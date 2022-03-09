@@ -1,4 +1,4 @@
-﻿namespace Applique.GivenWhenThen.Core.Test.Subjects
+﻿namespace Applique.WhenGivenThen.Core.Test.Subjects
 {
     public class ShoppingCartItem
     {

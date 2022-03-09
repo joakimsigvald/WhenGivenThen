@@ -1,6 +1,6 @@
-﻿using Applique.GivenWhenThen.Core.Test.Subjects;
+﻿using Applique.WhenGivenThen.Core.Test.Subjects;
 
-namespace Applique.GivenWhenThen.Core.Test.Tests.AsyncShoppingService
+namespace Applique.WhenGivenThen.Core.Test.Tests.AsyncShoppingService
 {
     public abstract class TestAsyncShoppingService<TResult>
         : TestSubjectAsync<Subjects.AsyncShoppingService, TResult>
