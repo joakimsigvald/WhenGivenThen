@@ -15,6 +15,8 @@ public static class Extensions
     public static void IsSameAs(this object actual, object expected) => Assert.Same(expected, actual);
     public static void IsEmpty<TResult>(this IEnumerable<TResult> actual) => Assert.Empty(actual);
     public static void IsOne<TResult>(this IEnumerable<TResult> actual) => Assert.Single(actual);
+    public static void Counts<TResult>(this IEnumerable<TResult> actual, int expected) => actual.Count().Is(expected);
+    public static void IsLast<TResult>(this IEnumerable<TResult> actual, TResult item) => actual.Last().IsSameAs(item);
     public static void Each<TResult>(this IEnumerable<TResult> actual, Action<TResult> assert)
         => actual.ToList().ForEach(assert);
     public static void Each<TResult>(this IEnumerable<TResult> actual, Action<TResult, int> assert)

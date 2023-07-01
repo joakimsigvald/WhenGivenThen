@@ -30,7 +30,7 @@ public class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
     public class GivenCartWithOneItem : WhenAddItem
     {
         protected override void Given() => CartItems = new[] { new ShoppingCartItem() };
-        [Fact] public void ThenCartHasTwoItems() => Then.Result.Items.Length.Is(2);
-        [Fact] public void ThenNewItemIsLast() => Then.Result.Items.Last().IsSameAs(NewItem);
+        [Fact] public void ThenCartHasTwoItems() => Then.Result.Items.Counts(2);
+        [Fact] public void ThenNewItemIsLast() => Then.Result.Items.IsLast(NewItem);
     }
 }
