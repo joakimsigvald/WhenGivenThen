@@ -1,7 +1,6 @@
-﻿namespace Applique.WhenGivenThen.Core
+﻿namespace Applique.WhenGivenThen.Core;
+
+public abstract class TestStatic<TResult> : TestBase<TResult>
 {
-    public abstract class TestStatic<TResult> : TestBase<TResult>
-    {
-        protected override sealed void Arrange() => base.Arrange();
-    }
+    protected override sealed void Arrange() => base.Arrange();
 }

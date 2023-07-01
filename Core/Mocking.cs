@@ -7,9 +7,9 @@ using System.Linq.Expressions;
 namespace Applique.WhenGivenThen.Core
 {
     /// <summary>
-    /// Not intended for override. Override either TestStatic or TestSubject instead
+    /// Not intended for override. Override one of TestStatic, TestStaticAsync, TestSubject or TestSubjectAsync instead
     /// </summary>
-    public abstract class Mocking//test
+    public abstract class Mocking
     {
         internal protected Mocking() => CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 

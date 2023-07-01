@@ -1,7 +1,6 @@
-﻿namespace Applique.WhenGivenThen.Core.Test.Subjects
+﻿namespace Applique.WhenGivenThen.Core.Test.Subjects;
+
+public interface IOrderService
 {
-    public interface IOrderService
-    {
-        void CreateOrder(ShoppingCart cart);
-    }
+    void CreateOrder(ShoppingCart cart);
 }

@@ -1,24 +1,23 @@
 ﻿using Applique.WhenGivenThen.Core.Test.Subjects;
+using System;
 using Xunit;
 
-namespace Applique.WhenGivenThen.Core.Test.Tests.ShoppingService
+namespace Applique.WhenGivenThen.Core.Test.Tests.ShoppingService;
+
+public class WhenCreateCart : TestShoppingService<ShoppingCart>
 {
-    public class WhenCreateCart : TestShoppingService<ShoppingCart>
+    protected int Id;
+    protected override Func<ShoppingCart> Func => () => SUT.CreateCart(Id);
+
+    public class GivenIdIsOne : WhenCreateCart
     {
-        protected int Id;
-        protected override void Act() => CollectResult(() => SUT.CreateCart(Id));
-        public WhenCreateCart() => ArrangeAndAct();
+        protected override void Given() => Id = 1;
+        [Fact] public void ThenCartIdIsOne() => Assert.Equal(1, Result.Id);
+    }
 
-        public class GivenIdIsOne : WhenCreateCart
-        {
-            protected override void Given() => Id = 1;
-            [Fact] public void ThenCartIdIsOne() => Assert.Equal(1, Result.Id);
-        }
-
-        public class GivenIdIsTwo : WhenCreateCart
-        {
-            protected override void Given() => Id = 2;
-            [Fact] public void ThenCartIdIsTwo() => Assert.Equal(2, Result.Id);
-        }
+    public class GivenIdIsTwo : WhenCreateCart
+    {
+        protected override void Given() => Id = 2;
+        [Fact] public void ThenCartIdIsTwo() => Assert.Equal(2, Result.Id);
     }
 }

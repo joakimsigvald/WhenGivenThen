@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Applique.WhenGivenThen.Core.Test.Subjects
+namespace Applique.WhenGivenThen.Core.Test.Subjects;
+
+public class ShoppingCart
 {
-    public class ShoppingCart
-    {
-        public int Id { get; set; }
-        public ShoppingCartItem[] Items { get; set; } = Array.Empty<ShoppingCartItem>();
-    }
+    public bool IsOpen { get; set; }
+    public int Id { get; set; }
+    public ShoppingCartItem[] Items { get; set; } = Array.Empty<ShoppingCartItem>();
 }

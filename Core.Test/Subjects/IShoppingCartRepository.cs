@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-namespace Applique.WhenGivenThen.Core.Test.Subjects
+namespace Applique.WhenGivenThen.Core.Test.Subjects;
+
+public interface IShoppingCartRepository
 {
-    public interface IShoppingCartRepository
-    {
-        Task<ShoppingCart> GetCart(int id);
-        Task StoreCart(ShoppingCart cart);
-    }
+    Task<ShoppingCart> GetCart(int id);
+    Task StoreCart(ShoppingCart cart);
 }

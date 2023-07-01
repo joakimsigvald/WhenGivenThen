@@ -1,6 +1,5 @@
-﻿namespace Applique.WhenGivenThen.Core.Test.Subjects
+﻿namespace Applique.WhenGivenThen.Core.Test.Subjects;
+
+public class ShoppingCartItem
 {
-    public class ShoppingCartItem
-    {
-    }
 }

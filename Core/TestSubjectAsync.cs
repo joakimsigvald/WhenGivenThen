@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿namespace Applique.WhenGivenThen.Core;
 
-namespace Applique.WhenGivenThen.Core
+public abstract class TestSubjectAsync<ISUT, TResult> : TestAsync<TResult>
 {
-    public abstract class TestSubjectAsync<ISUT, TResult> : TestSubject<ISUT, TResult>
+    protected ISUT SUT { get; private set; }
+    protected override sealed void Arrange()
     {
-        protected override sealed void Act() => ActAsync().GetAwaiter().GetResult();
-        protected abstract Task ActAsync();
+        base.Arrange();
+        SUT = CreateSUT();
     }
+    protected abstract ISUT CreateSUT();
 }
