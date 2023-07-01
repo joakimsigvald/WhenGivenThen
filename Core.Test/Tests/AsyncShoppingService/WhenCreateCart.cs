@@ -1,9 +1,9 @@
-﻿using Applique.WhenGivenThen.Test.Subjects;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Xunit;
+using Joakimsigvald.WhenGivenThen.Test.Subjects;
 
-namespace Applique.WhenGivenThen.Test.Tests.AsyncShoppingService;
+namespace Joakimsigvald.WhenGivenThen.Test.Tests.AsyncShoppingService;
 
 public class WhenCreateCart : TestAsyncShoppingService<ShoppingCart>
 {
@@ -13,12 +13,12 @@ public class WhenCreateCart : TestAsyncShoppingService<ShoppingCart>
     public class GivenIdIsOne : WhenCreateCart
     {
         protected override void Given() => Id = 1;
-        [Fact] public void ThenCartIdIsOne() => Assert.Equal(Id, Result.Id);
+        [Fact] public void ThenCartIdIsOne() => Then.Result.Id.Is(Id);
     }
 
     public class GivenIdIsTwo : WhenCreateCart
     {
         protected override void Given() => Id = 2;
-        [Fact] public void ThenCartIdIsTwo() => Assert.Equal(Id, Result.Id);
+        [Fact] public void ThenCartIdIsTwo() => Then.Result.Id.Is(Id);
     }
 }

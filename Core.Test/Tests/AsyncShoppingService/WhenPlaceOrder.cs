@@ -1,9 +1,9 @@
-﻿using Applique.WhenGivenThen.Test.Subjects;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Xunit;
+using Joakimsigvald.WhenGivenThen.Test.Subjects;
 
-namespace Applique.WhenGivenThen.Test.Tests.AsyncShoppingService;
+namespace Joakimsigvald.WhenGivenThen.Test.Tests.AsyncShoppingService;
 
 public class WhenPlaceOrder : TestAsyncShoppingService<object>
 {
@@ -12,11 +12,11 @@ public class WhenPlaceOrder : TestAsyncShoppingService<object>
     public class GivenOpenCart : WhenPlaceOrder
     {
         protected override void Given() => Cart = new() { IsOpen = true };
-        [Fact] public void ThenCreateOrderFromCart() => Verify<IOrderService>(s => s.CreateOrder(Cart));
+        [Fact] public void ThenOrderIsCreated() => Then.The<IOrderService>(_ => _.CreateOrder(Cart));
     }
     public class GivenClosedCart : WhenPlaceOrder
     {
         protected override void Given() => Cart = new() { IsOpen = false };
-        [Fact] public void ThenThrowNotPurcheable() => Assert.IsType<NotPurcheable>(Error);
+        [Fact] public void ThenThrowsNotPurcheable() => Then.Throws<NotPurcheable>();
     }
 }

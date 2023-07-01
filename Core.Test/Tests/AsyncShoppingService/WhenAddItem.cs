@@ -1,18 +1,18 @@
-﻿using Applique.WhenGivenThen.Test.Subjects;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
+using Joakimsigvald.WhenGivenThen.Test.Subjects;
 
-namespace Applique.WhenGivenThen.Test.Tests.AsyncShoppingService;
+namespace Joakimsigvald.WhenGivenThen.Test.Tests.AsyncShoppingService;
 
 public class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
 {
     protected int CartId = 123;
     protected ShoppingCartItem[] CartItems;
-    protected readonly ShoppingCartItem Item = new();
+    protected readonly ShoppingCartItem NewItem = new();
 
-    protected override Func<Task<ShoppingCart>> Func => () => SUT.AddToCartCart(CartId, Item);
+    protected override Func<Task<ShoppingCart>> Func => () => SUT.AddToCartCart(CartId, NewItem);
 
     protected override void Setup()
         => Mocked<IShoppingCartRepository>()
@@ -22,18 +22,15 @@ public class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
     public class GivenEmptyCart : WhenAddItem
     {
         protected override void Given() => CartItems = Array.Empty<ShoppingCartItem>();
-
-        [Fact] public void ThenCartContainOneItem() => Assert.Single(Result.Items);
-        [Fact] public void ThenCartIdIsPreserved() => Assert.Equal(CartId, Result.Id);
-        [Fact]
-        public void ThenStoreUpdatedCart()
-            => Verify<IShoppingCartRepository>(repo => repo.StoreCart(Result));
+        [Fact] public void ThenCartHasOneItem() => Then.Result.Items.IsOne();
+        [Fact] public void TheIdIsPreserved() => Then.Result.Id.Is(CartId);
+        [Fact] public void ThenCartIsStored() => Then.The<IShoppingCartRepository>(_ => _.StoreCart(Then.Result));
     }
 
     public class GivenCartWithOneItem : WhenAddItem
     {
         protected override void Given() => CartItems = new[] { new ShoppingCartItem() };
-        [Fact] public void ThenCartContainTwoItems() => Assert.Equal(2, Result.Items.Length);
-        [Fact] public void ThenItemIsAddedLast() => Assert.Same(Item, Result.Items.Last());
+        [Fact] public void ThenCartHasTwoItems() => Then.Result.Items.Length.Is(2);
+        [Fact] public void ThenNewItemIsLast() => Then.Result.Items.Last().IsSameAs(NewItem);
     }
 }

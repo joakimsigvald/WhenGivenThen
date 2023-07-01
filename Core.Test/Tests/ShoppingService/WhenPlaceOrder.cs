@@ -1,8 +1,8 @@
-﻿using Applique.WhenGivenThen.Test.Subjects;
-using System;
+﻿using System;
 using Xunit;
+using Joakimsigvald.WhenGivenThen.Test.Subjects;
 
-namespace Applique.WhenGivenThen.Test.Tests.ShoppingService;
+namespace Joakimsigvald.WhenGivenThen.Test.Tests.ShoppingService;
 
 public class WhenPlaceOrder : TestShoppingService<object>
 {
@@ -11,6 +11,6 @@ public class WhenPlaceOrder : TestShoppingService<object>
     public class GivenCart : WhenPlaceOrder
     {
         protected override void Given() => Cart = new();
-        [Fact] public void ThenCreateOrderFromCart() => Verify<IOrderService>(s => s.CreateOrder(Cart));
+        [Fact] public void ThenOrderIsCreated() => Then.The<IOrderService>(_ => _.CreateOrder(Cart));
     }
 }

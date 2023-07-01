@@ -5,8 +5,8 @@
     <VersionPrefix></VersionPrefix>
     <Authors>Joakim Sigvald</Authors>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>Applique.WhenGivenThen</AssemblyName>
-	  <RootNamespace>Applique.WhenGivenThen</RootNamespace>
+    <AssemblyName>WhenGivenThen</AssemblyName>
+	  <RootNamespace>Joakimsigvald.WhenGivenThen</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <PackageTags>xunit test when given then</PackageTags>
@@ -14,14 +14,21 @@
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen.git</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
-    <PackageVersion>2.0.1</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>Reference latest version of XUnit and Moq instead of specific version.</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Moq" Version="*" />
-    <PackageReference Include="xunit" Version="*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1">
+      <PrivateAssets>none</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>none</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 

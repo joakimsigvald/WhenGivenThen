@@ -1,30 +1,53 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Applique.WhenGivenThen;
+namespace Joakimsigvald.WhenGivenThen;
 
 /// <summary>
 /// Not intended for override. Override either TestStatic or TestSubject instead
 /// </summary>
 public abstract class TestBase<TResult> : Mocking, IDisposable
 {
+    private bool _isArranged;
+    private bool _isActed;
+    private Exception _error;
+    private TResult _result;
+    private TestResult<TResult> _then;
+
     internal protected TestBase() { }
-    protected Exception Error { get; set; }
-    protected TResult Result { get; private set; }
-    protected virtual void Given() { }
-    protected virtual void Setup() { }
-    protected virtual void Arrange()
-    {
-        Given();
-        Setup();
-    }
-    protected abstract void Act();
+
+    public abstract void Dispose();
 
     protected void ArrangeAndAct()
     {
         Arrange();
         Act();
     }
+
+    protected void Arrange()
+    {
+        if (_isArranged) return;
+        Given();
+        Setup();
+        Instantiate();
+        _isArranged = true;
+    }
+
+    protected void Act()
+    {
+        if (_isActed) return;
+        if (!_isArranged) throw new InvalidOperationException("Must arrange before act");
+        DoAct();
+        _isActed = true;
+    }
+
+    protected TestResult<TResult> Then => _then ??= CreateTestResult();
+
+    protected virtual void Given() { }
+    protected virtual void Setup() { }
+    protected internal abstract void Instantiate();
+
+    protected abstract void DoAct();
 
     protected internal void Execute(Action action, Func<TResult> func)
     {
@@ -47,15 +70,21 @@ public abstract class TestBase<TResult> : Mocking, IDisposable
         return CatchError(action);
     }
 
+    private TestResult<TResult> CreateTestResult()
+    {
+        ArrangeAndAct();
+        return new(_result, _error, this);
+    }
+
     private void CollectResult(Func<TResult> act)
     {
         try
         {
-            Result = act();
+            _result = act();
         }
         catch (Exception ex)
         {
-            Error = ex;
+            _error = ex;
         }
     }
 
@@ -67,7 +96,7 @@ public abstract class TestBase<TResult> : Mocking, IDisposable
         }
         catch (Exception ex)
         {
-            Error = ex;
+            _error = ex;
         }
     }
 
@@ -75,11 +104,11 @@ public abstract class TestBase<TResult> : Mocking, IDisposable
     {
         try
         {
-            Result = AsyncHelper.Execute(act);
+            _result = AsyncHelper.Execute(act);
         }
         catch (Exception ex)
         {
-            Error = ex;
+            _error = ex;
         }
         return Task.CompletedTask;
     }
@@ -92,10 +121,8 @@ public abstract class TestBase<TResult> : Mocking, IDisposable
         }
         catch (Exception ex)
         {
-            Error = ex;
+            _error = ex;
         }
         return Task.CompletedTask;
     }
-
-    public abstract void Dispose();
 }

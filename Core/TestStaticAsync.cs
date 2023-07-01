@@ -1,6 +1,6 @@
-﻿namespace Applique.WhenGivenThen;
+﻿namespace Joakimsigvald.WhenGivenThen;
 
 public abstract class TestStaticAsync<TResult> : TestAsync<TResult>
 {
-    protected override sealed void Arrange() => base.Arrange();
+    protected internal override sealed void Instantiate() { }
 }

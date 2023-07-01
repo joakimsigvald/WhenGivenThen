@@ -2,9 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq.Expressions;
 
-namespace Applique.WhenGivenThen
+namespace Joakimsigvald.WhenGivenThen
 {
     /// <summary>
     /// Not intended for override. Override one of TestStatic, TestStaticAsync, TestSubject or TestSubjectAsync instead
@@ -15,36 +14,10 @@ namespace Applique.WhenGivenThen
 
         private readonly IDictionary<Type, Mock> _mocks = new Dictionary<Type, Mock>();
 
-        protected void Verify<TObject>() where TObject : class
-            => Mocked<TObject>().Verify();
-
-        protected void Verify<TObject>(Expression<Action<TObject>> expression) where TObject : class
-            => Mocked<TObject>().Verify(expression);
-
-        protected void Verify<TObject>(Expression<Action<TObject>> expression, Times times)
-            where TObject : class
-            => Mocked<TObject>().Verify(expression, times);
-
-        protected void Verify<TObject>(Expression<Action<TObject>> expression, Func<Times> times)
-            where TObject : class
-            => Mocked<TObject>().Verify(expression, times);
-
-        protected void Verify<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression)
-            where TObject : class
-            => Mocked<TObject>().Verify(expression);
-
-        protected void Verify<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression, Times times)
-            where TObject : class
-            => Mocked<TObject>().Verify(expression, times);
-
-        protected void Verify<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression, Func<Times> times)
-            where TObject : class
-            => Mocked<TObject>().Verify(expression, times);
-
-        protected TObject MockOf<TObject>() where TObject : class
+        protected TObject The<TObject>() where TObject : class
             => Mocked<TObject>().Object;
 
-        protected TObject MockOf<TObject, TReturnDefault>(TReturnDefault isDefault)
+        protected TObject The<TObject, TReturnDefault>(TReturnDefault isDefault)
             where TObject : class
             => Mocked<TObject, TReturnDefault>(isDefault).Object;
 
@@ -55,7 +28,7 @@ namespace Applique.WhenGivenThen
         protected Mock<TObject> Mocked<TObject>() where TObject : class
             => Mocked<TObject, TObject>(_ => _);
 
-        private Mock<TObject> Mocked<TObject, TDefault>(Func<TObject, TDefault> getDefault)
+        internal Mock<TObject> Mocked<TObject, TDefault>(Func<TObject, TDefault> getDefault)
             where TObject : class
             => Mocked(() => MockWithReturnsDefault(getDefault));
 

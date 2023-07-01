@@ -1,8 +1,8 @@
-﻿using Applique.WhenGivenThen.Test.Subjects;
-using System;
+﻿using System;
 using Xunit;
+using Joakimsigvald.WhenGivenThen.Test.Subjects;
 
-namespace Applique.WhenGivenThen.Test.Tests.ShoppingService;
+namespace Joakimsigvald.WhenGivenThen.Test.Tests.ShoppingService;
 
 public class WhenCreateCart : TestShoppingService<ShoppingCart>
 {
@@ -12,12 +12,12 @@ public class WhenCreateCart : TestShoppingService<ShoppingCart>
     public class GivenIdIsOne : WhenCreateCart
     {
         protected override void Given() => Id = 1;
-        [Fact] public void ThenCartIdIsOne() => Assert.Equal(1, Result.Id);
+        [Fact] public void ThenCartIdIsOne() => Then.Result.Id.Is(1);
     }
 
     public class GivenIdIsTwo : WhenCreateCart
     {
         protected override void Given() => Id = 2;
-        [Fact] public void ThenCartIdIsTwo() => Assert.Equal(2, Result.Id);
+        [Fact] public void ThenCartIdIsTwo() => Then.Result.Id.Is(2);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 
-namespace Applique.WhenGivenThen.Test.Subjects;
+namespace Joakimsigvald.WhenGivenThen.Test.Subjects;
 
 public class AsyncShoppingService
 {
@@ -26,6 +26,6 @@ public class AsyncShoppingService
         return res;
     }
 
-    public Task PlaceOrder(ShoppingCart cart) 
+    public Task PlaceOrder(ShoppingCart cart)
         => cart.IsOpen ? Task.Run(() => _orderService.CreateOrder(cart)) : throw new NotPurcheable();
 }
