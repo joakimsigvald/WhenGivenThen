@@ -41,6 +41,7 @@ public abstract class TestBase<TResult> : Mocking, IDisposable
         _isActed = true;
     }
 
+    protected TResult Result => Then.Result;
     protected TestResult<TResult> Then => _then ??= CreateTestResult();
 
     protected virtual void Given() { }

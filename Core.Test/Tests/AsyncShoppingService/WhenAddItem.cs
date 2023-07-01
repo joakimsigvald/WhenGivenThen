@@ -24,7 +24,7 @@ public class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
         protected override void Given() => CartItems = Array.Empty<ShoppingCartItem>();
         [Fact] public void ThenCartHasOneItem() => Then.Result.Items.IsOne();
         [Fact] public void TheIdIsPreserved() => Then.Result.Id.Is(CartId);
-        [Fact] public void ThenCartIsStored() => Then.The<IShoppingCartRepository>(_ => _.StoreCart(Then.Result));
+        [Fact] public void ThenCartIsStored() => Then.The<IShoppingCartRepository>(_ => _.StoreCart(Result));
     }
 
     public class GivenCartWithOneItem : WhenAddItem
