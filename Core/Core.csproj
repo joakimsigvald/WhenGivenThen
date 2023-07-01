@@ -5,8 +5,8 @@
     <VersionPrefix></VersionPrefix>
     <Authors>Joakim Sigvald</Authors>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>Applique.WhenGivenThen.Core</AssemblyName>
-	  <RootNamespace>Applique.WhenGivenThen.Core</RootNamespace>
+    <AssemblyName>Applique.WhenGivenThen</AssemblyName>
+	  <RootNamespace>Applique.WhenGivenThen</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <PackageTags>xunit test when given then</PackageTags>
@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen.git</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.0.4</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>

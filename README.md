@@ -8,7 +8,7 @@ create a folder with the same subfolders and name: "[Subfolders../ClassName]" in
 Then create an abstract class in the new folder, named "Test[ClassName]", that inherits one of the four base classes (TestSubject, TestSubjectAsync, TestStatic, TestStaticAsync).
 Then create an abstract class in the same folder for each public method to test, named "When[MethodName]", that inherits "Test[ClassName]".
 Then, for each condition to be tested, create a nested class, named "Given[TheCondition]", within the When-class.
-Finally, the Given-class will have one or more test-methods for each locical assert, named "Then[ExpectedOutcom]".
+Finally, the Given-class will have one or more test-methods for each logical assert, named "Then[ExpectedOutcome]".
 Necessary precondition is put in the same nested class inside the overridden method "Given" and necessary setup is put in the overridden method "Setup".
 It is also possible to add tear-down logic in the same class by overriding the method "TearDown".
 
@@ -18,7 +18,7 @@ and only use [Fact] attribute for test methods not [Theory], since that force yo
 which goes against the pattern that this package supports.
 
 Example:
-
+```
 namespace MyCompany.MyApplication.MyProject.Test.MyFolder.MyClass
 {
     public abstract class TestMyClass<TResult> : TestSubjectAsync<MyProject.MyFolder.MyClass, TResult>
@@ -40,5 +40,5 @@ namespace MyCompany.MyApplication.MyProject.Test.MyFolder.MyClass
         }
     }
 }
-
+```
 More examples can be found as Unit tests in the source code

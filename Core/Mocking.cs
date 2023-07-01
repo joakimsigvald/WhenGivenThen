@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq.Expressions;
 
-namespace Applique.WhenGivenThen.Core
+namespace Applique.WhenGivenThen
 {
     /// <summary>
     /// Not intended for override. Override one of TestStatic, TestStaticAsync, TestSubject or TestSubjectAsync instead

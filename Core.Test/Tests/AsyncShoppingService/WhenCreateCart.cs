@@ -1,9 +1,9 @@
-﻿using Applique.WhenGivenThen.Core.Test.Subjects;
+﻿using Applique.WhenGivenThen.Test.Subjects;
 using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Applique.WhenGivenThen.Core.Test.Tests.AsyncShoppingService;
+namespace Applique.WhenGivenThen.Test.Tests.AsyncShoppingService;
 
 public class WhenCreateCart : TestAsyncShoppingService<ShoppingCart>
 {

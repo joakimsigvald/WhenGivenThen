@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Applique.WhenGivenThen.Core;
+namespace Applique.WhenGivenThen;
 
 /// <summary>
 /// Not intended for override. Override either TestStatic or TestSubject instead

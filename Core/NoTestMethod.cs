@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Applique.WhenGivenThen.Core;
+namespace Applique.WhenGivenThen;
 
 public class NoTestMethod : InvalidOperationException
 {

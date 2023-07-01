@@ -1,4 +1,4 @@
-﻿namespace Applique.WhenGivenThen.Core.Test.Subjects;
+﻿namespace Applique.WhenGivenThen.Test.Subjects;
 
 public interface IOrderService
 {

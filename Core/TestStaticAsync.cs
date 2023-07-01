@@ -1,4 +1,4 @@
-﻿namespace Applique.WhenGivenThen.Core;
+﻿namespace Applique.WhenGivenThen;
 
 public abstract class TestStaticAsync<TResult> : TestAsync<TResult>
 {

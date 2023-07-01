@@ -1,4 +1,4 @@
-﻿namespace Applique.WhenGivenThen.Core;
+﻿namespace Applique.WhenGivenThen;
 
 public abstract class TestSubjectAsync<ISUT, TResult> : TestAsync<TResult>
 {

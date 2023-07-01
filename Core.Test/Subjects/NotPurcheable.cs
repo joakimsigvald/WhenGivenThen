@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Applique.WhenGivenThen.Core.Test.Subjects;
+namespace Applique.WhenGivenThen.Test.Subjects;
 
 public class NotPurcheable : ApplicationException
 {

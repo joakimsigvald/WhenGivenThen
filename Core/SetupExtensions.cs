@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Moq.Language.Flow;
 
-namespace Applique.WhenGivenThen.Core;
+namespace Applique.WhenGivenThen;
 
 public static class SetupExtensions
 {

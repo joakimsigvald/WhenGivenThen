@@ -1,8 +1,8 @@
-﻿using Applique.WhenGivenThen.Core.Test.Subjects;
+﻿using Applique.WhenGivenThen.Test.Subjects;
 using System;
 using Xunit;
 
-namespace Applique.WhenGivenThen.Core.Test.Tests.ShoppingService;
+namespace Applique.WhenGivenThen.Test.Tests.ShoppingService;
 
 public class WhenPlaceOrder : TestShoppingService<object>
 {

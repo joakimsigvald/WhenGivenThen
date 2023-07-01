@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Applique.WhenGivenThen.Core;
+namespace Applique.WhenGivenThen;
 
 public static class AsyncHelper
 {
