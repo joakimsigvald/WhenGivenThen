@@ -20,6 +20,12 @@ public class TestResult<TResult>
     public Exception Error { get; }
     public void Throws<TError>() => Assert.IsType<TError>(Error);
 
+    public void Throws<TError>(Action<TError> assert)
+    {
+        var ex = Assert.IsType<TError>(Error);
+        assert(ex);
+    }
+
     public void The<TObject>() where TObject : class
         => Mocked<TObject>().Verify();
 
