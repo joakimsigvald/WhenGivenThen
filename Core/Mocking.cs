@@ -9,7 +9,7 @@ namespace Applique.WhenGivenThen.Core
     /// <summary>
     /// Not intended for override. Override either TestStatic or TestSubject instead
     /// </summary>
-    public abstract class Mocking
+    public abstract class Mocking//test
     {
         internal protected Mocking() => CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 
