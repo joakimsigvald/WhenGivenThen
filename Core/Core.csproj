@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen.git</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>Added more fluent assertions</PackageReleaseNotes>
