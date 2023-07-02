@@ -14,7 +14,7 @@ public static class Assertions
     public static void IsEmpty<TItem>(this IEnumerable<TItem> actual) => Assert.Empty(actual);
     public static void IsNotEmpty<TItem>(this IEnumerable<TItem> actual) => Assert.Empty(actual);
     public static void IsOne<TItem>(this IEnumerable<TItem> actual) => Assert.Single(actual);
-    public static void IsOne<TItem>(this IEnumerable<TItem> actual, Func<TItem, bool> assert) 
+    public static void IsOne<TItem>(this IEnumerable<TItem> actual, Action<TItem> assert) 
         => assert(Assert.Single(actual));
 
     public static void Counts<TItem>(this IEnumerable<TItem> actual, int expected) => actual.Count().Is(expected);
