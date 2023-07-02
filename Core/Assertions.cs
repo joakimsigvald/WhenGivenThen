@@ -12,7 +12,7 @@ public static class Assertions
     public static void IsNull(this object actual) => Assert.Null(actual);
     public static void IsSameAs(this object actual, object expected) => Assert.Same(expected, actual);
     public static void IsEmpty<TItem>(this IEnumerable<TItem> actual) => Assert.Empty(actual);
-    public static void IsNotEmpty<TItem>(this IEnumerable<TItem> actual) => Assert.Empty(actual);
+    public static void IsNotEmpty<TItem>(this IEnumerable<TItem> actual) => Assert.NotEmpty(actual);
     public static void IsOne<TItem>(this IEnumerable<TItem> actual) => Assert.Single(actual);
     public static void IsOne<TItem>(this IEnumerable<TItem> actual, Action<TItem> assert) 
         => assert(Assert.Single(actual));
