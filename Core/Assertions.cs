@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Joakimsigvald.WhenGivenThen;
+namespace WhenGivenThen;
 
 public static class Assertions
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Joakimsigvald.WhenGivenThen.Test.Subjects;
+namespace WhenGivenThen.Test.Subjects;
 
 public class ShoppingCart
 {

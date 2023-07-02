@@ -3,7 +3,7 @@ using System;
 using System.Linq.Expressions;
 using Xunit;
 
-namespace Joakimsigvald.WhenGivenThen;
+namespace WhenGivenThen;
 
 public class TestResult<TResult>
 {

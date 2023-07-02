@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Joakimsigvald.WhenGivenThen;
+namespace WhenGivenThen;
 
 public class MoreThanOneTestMethod : InvalidOperationException
 {

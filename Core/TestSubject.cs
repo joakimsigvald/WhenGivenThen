@@ -1,4 +1,4 @@
-﻿namespace Joakimsigvald.WhenGivenThen;
+﻿namespace WhenGivenThen;
 
 public abstract class TestSubject<ISUT, TResult> : TestSync<TResult>
 {

@@ -1,6 +1,6 @@
-﻿using Joakimsigvald.WhenGivenThen.Test.Subjects;
+﻿using WhenGivenThen.Test.Subjects;
 
-namespace Joakimsigvald.WhenGivenThen.Test.Tests.ShoppingService;
+namespace WhenGivenThen.Test.Tests.ShoppingService;
 
 public abstract class TestShoppingService<TResult> : TestSubject<Subjects.ShoppingService, TResult>
 {

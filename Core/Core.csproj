@@ -6,7 +6,7 @@
     <Authors>Joakim Sigvald</Authors>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>WhenGivenThen</AssemblyName>
-	  <RootNamespace>Joakimsigvald.WhenGivenThen</RootNamespace>
+	  <RootNamespace>WhenGivenThen</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <PackageTags>xunit test when given then</PackageTags>

@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Joakimsigvald.WhenGivenThen;
+namespace WhenGivenThen;
 
 public static class AsyncHelper
 {

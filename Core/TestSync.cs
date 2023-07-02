@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Joakimsigvald.WhenGivenThen;
+namespace WhenGivenThen;
 
 /// <summary>
 /// Not intended for override. Override either TestStatic or TestSubject instead

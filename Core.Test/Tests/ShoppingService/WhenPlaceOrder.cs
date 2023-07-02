@@ -1,8 +1,8 @@
 ﻿using System;
 using Xunit;
-using Joakimsigvald.WhenGivenThen.Test.Subjects;
+using WhenGivenThen.Test.Subjects;
 
-namespace Joakimsigvald.WhenGivenThen.Test.Tests.ShoppingService;
+namespace WhenGivenThen.Test.Tests.ShoppingService;
 
 public class WhenPlaceOrder : TestShoppingService<object>
 {

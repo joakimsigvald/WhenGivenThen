@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Joakimsigvald.WhenGivenThen
+namespace WhenGivenThen
 {
     /// <summary>
     /// Not intended for override. Override one of TestStatic, TestStaticAsync, TestSubject or TestSubjectAsync instead

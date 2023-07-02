@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Moq.Language.Flow;
 using Xunit;
 
-namespace Joakimsigvald.WhenGivenThen;
+namespace WhenGivenThen;
 
 public static class Extensions
 {

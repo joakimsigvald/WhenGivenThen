@@ -1,4 +1,4 @@
-﻿namespace Joakimsigvald.WhenGivenThen;
+﻿namespace WhenGivenThen;
 
 public abstract class TestStaticAsync<TResult> : TestAsync<TResult>
 {

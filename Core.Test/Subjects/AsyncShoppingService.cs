@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 
-namespace Joakimsigvald.WhenGivenThen.Test.Subjects;
+namespace WhenGivenThen.Test.Subjects;
 
 public class AsyncShoppingService
 {

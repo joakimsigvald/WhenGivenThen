@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Joakimsigvald.WhenGivenThen.Test.Subjects;
+namespace WhenGivenThen.Test.Subjects;
 
 public interface IShoppingCartRepository
 {
