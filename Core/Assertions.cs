@@ -12,8 +12,8 @@ public static class Assertions
     public static void Is<TValue>(this TValue actual, TValue expected) => Assert.Equal(expected, actual);
     public static void IsSameAs(this object actual, object expected) => Assert.Same(expected, actual);
     public static void IsNotSameAs(this object actual, object expected) => Assert.NotSame(expected, actual);
-    public static void Equals<TThis, TOther>(this TThis actual, TOther other, Func<TThis, TOther, bool> compare)
-        => Assert.True(compare(actual, other));
+    public static void Satisfies<TValue, TOther>(this TValue actual, Func<TValue, TOther, bool> predicate, TOther other)
+        => Assert.True(predicate(actual, other));
 
     public static void IsEmpty<TItem>(this IEnumerable<TItem> actual) => Assert.Empty(actual);
     public static void IsNotEmpty<TItem>(this IEnumerable<TItem> actual) => Assert.NotEmpty(actual);
