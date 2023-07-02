@@ -7,14 +7,10 @@ namespace WhenGivenThen;
 /// </summary>
 public abstract class TestSync<TResult> : TestBase<TResult>
 {
+    internal protected TestSync() { }
     protected virtual Action Action => null;
     protected virtual Func<TResult> Func => null;
-    protected override sealed void DoAct() => Execute(Action, Func);
-
-    public override void Dispose()
-    {
-        TearDown();
-    }
-
+    protected override sealed void Act() => Execute(Action, Func);
+    public override void Dispose() => TearDown();
     protected virtual void TearDown() { }
 }
