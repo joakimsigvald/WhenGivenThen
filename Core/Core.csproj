@@ -13,10 +13,13 @@
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen.git</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageVersion>1.1.0</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageReleaseNotes>Deprecated some redundant assertions. Added IsNot</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
@@ -30,6 +33,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\" />
   </ItemGroup>
 
 </Project>
