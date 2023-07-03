@@ -13,6 +13,7 @@ public class WhenCreateCart : TestShoppingService<ShoppingCart>
     {
         protected override void Given() => Id = 1;
         [Fact] public void ThenCartIdIsOne() => Then.Result.Id.Is(1);
+        [Fact] public void ThenCartIdIsNotTwo() => Then.Result.Id.IsNot(2);
     }
 
     public class GivenIdIsTwo : WhenCreateCart

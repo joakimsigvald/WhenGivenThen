@@ -1,5 +1,3 @@
 ﻿namespace WhenGivenThen.Test.Subjects;
 
-public class ShoppingCartItem
-{
-}
+public record ShoppingCartItem(string Sku, int LineNumber = 0);

@@ -14,7 +14,7 @@ public class AsyncShoppingService
     public Task<ShoppingCart> CreateCart(int id)
         => Task.FromResult(new ShoppingCart { Id = id });
 
-    public async Task<ShoppingCart> AddToCartCart(int cartId, ShoppingCartItem item)
+    public async Task<ShoppingCart> AddToCart(int cartId, ShoppingCartItem item)
     {
         var cart = await _repository.GetCart(cartId);
         var res = new ShoppingCart
@@ -28,4 +28,16 @@ public class AsyncShoppingService
 
     public Task PlaceOrder(ShoppingCart cart)
         => cart.IsOpen ? Task.Run(() => _orderService.CreateOrder(cart)) : throw new NotPurcheable();
+
+    public async Task<ShoppingCart> RemoveFromCart(int cartId, ShoppingCartItem item)
+    {
+        var cart = await _repository.GetCart(cartId);
+        var res = new ShoppingCart
+        {
+            Id = cart.Id,
+            Items = cart.Items.Except(new[] { item}).ToArray()
+        };
+        await _repository.StoreCart(res);
+        return res;
+    }
 }
