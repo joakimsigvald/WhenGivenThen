@@ -12,7 +12,7 @@ Whether you are beginner or expert in unit-testing, this framework will help you
 * Within that folder, one test-class and file should be created per method to test.
 
 ### Test a static function with return value
-* To test a static method `[MyClass.MyMethod]` returning `[ReturnType]`, Create a new abstract class named `When[MyMethod]` inheriting `WhenGivenThen.TestStatic<[ReturnType]>`.
+* To test a static method `[MyClass].[MyMethod]` returning `[ReturnType]`, Create a new abstract class named `When[MyMethod]` inheriting `WhenGivenThen.TestStatic<[ReturnType]>`.
 * Create a protected parameterless constructor that calls `When` with a lambda expression calling the method to test: `When(() => [MyClass].[MyMethod]([Args...]))`.
 * Each argument has to be defined as a protected field at the top of the class.
 
@@ -41,7 +41,7 @@ public abstract class WhenAddTwoNumbers : TestStatic<int>
 ```
 
 ### Test a static void method
-* To test a static void method `[MyClass.MyMethod]`, Create a new abstract class named `When[MyMethod]` inheriting `WhenGivenThen.TestStatic<object>`. 
+* To test a static void method `[MyClass].[MyMethod]`, Create a new abstract class named `When[MyMethod]` inheriting `WhenGivenThen.TestStatic<object>`. 
 (The generic parameter has no impact, but object is used by convention)
 * Create a protected parameterless constructor that calls `When` with a lambda expression calling the method to test: `When(() => [MyClass].[MyMethod]([Args...]))`.
 * Each argument has to be defined as a protected field at the top of the class.
