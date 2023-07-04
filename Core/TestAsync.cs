@@ -8,8 +8,8 @@ namespace WhenGivenThen;
 /// </summary>
 public abstract class TestAsync<TResult> : TestBase<TResult>
 {
-    protected void When(Func<Task> action) => When(() => AsyncHelper.Execute(action));
-    protected void When(Func<Task<TResult>> func) => When(() => AsyncHelper.Execute(func));
+    protected TestBase<TResult> When(Func<Task> action) => When(() => AsyncHelper.Execute(action));
+    protected TestBase<TResult> When(Func<Task<TResult>> func) => When(() => AsyncHelper.Execute(func));
     public override sealed void Dispose() => AsyncHelper.Execute(TearDown);
     protected virtual Task TearDown() => Task.CompletedTask;
 }
