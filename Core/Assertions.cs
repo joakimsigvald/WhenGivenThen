@@ -7,16 +7,6 @@ namespace WhenGivenThen;
 
 public static class Assertions
 {
-    [Obsolete("Replaced by Is(null)")]
-    public static void IsNull(this object actual) => Assert.Null(actual);
-    
-    [Obsolete("Replaced by IsNot(null)")]
-    public static void IsNotNull(this object actual) => Assert.NotNull(actual);
-    
-    [Obsolete("Replaced by [Value].[ExtensionMethod]([OtherValue]).Is(true)")]
-    public static void Satisfies<TValue, TOther>(this TValue actual, Func<TValue, TOther, bool> predicate, TOther other)
-    => Assert.True(predicate(actual, other));
-
     public static void Is<TValue>(this TValue actual, TValue expected) => Assert.Equal(expected, actual);
     public static void IsNot<TValue>(this TValue actual, TValue expected) => Assert.NotEqual(expected, actual);
     public static void IsSameAs(this object actual, object expected) => Assert.Same(expected, actual);

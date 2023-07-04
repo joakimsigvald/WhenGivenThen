@@ -1,13 +1,13 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 using WhenGivenThen.Test.Subjects;
 
 namespace WhenGivenThen.Test.Tests.ShoppingService;
 
-public class WhenCreateCart : TestShoppingService<ShoppingCart>
+public abstract class WhenCreateCart : TestShoppingService<ShoppingCart>
 {
     protected int Id;
-    protected override Func<ShoppingCart> Func => () => SUT.CreateCart(Id);
+
+    protected WhenCreateCart() => When(() => SUT.CreateCart(Id));
 
     public class GivenIdIsOne : WhenCreateCart
     {

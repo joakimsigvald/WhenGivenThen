@@ -1,20 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 using WhenGivenThen.Test.Subjects;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public class WhenRemoveItem : TestAsyncShoppingService<ShoppingCart>
+public abstract class WhenRemoveItem : TestAsyncShoppingService<ShoppingCart>
 {
     protected int CartId = 123;
     protected ShoppingCartItem[] CartItems;
     protected readonly ShoppingCartItem Item = new("X");
     private ShoppingCart _cart;
-    protected ShoppingCart Cart => _cart ??= CreateCart();
-    ShoppingCart CreateCart() => new() { Id = CartId, Items = CartItems };
 
-protected override Func<Task<ShoppingCart>> Func => () => SUT.RemoveFromCart(CartId, Cart.Items[0]);
+    protected WhenRemoveItem() => When(() => SUT.RemoveFromCart(CartId, Cart.Items[0]));
+
+    protected ShoppingCart Cart => _cart ??= new() { Id = CartId, Items = CartItems };
 
     protected override void Setup()
         => Mocked<IShoppingCartRepository>()

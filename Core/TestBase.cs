@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace WhenGivenThen;
 
@@ -8,11 +7,29 @@ namespace WhenGivenThen;
 /// </summary>
 public abstract class TestBase<TResult> : Mocking, IDisposable
 {
+    private Action _action = null;
+    private Func<TResult> _func = null;
     private Exception _error;
     private TResult _result;
     private TestResult<TResult> _then;
 
-    internal protected TestBase() { }
+    protected void When(Action action)
+    {
+        AssertNoTestMethod();
+        _action = action;
+    }
+
+    protected void When(Func<TResult> func)
+    {
+        AssertNoTestMethod();
+        _func = func;
+    }
+
+    private void AssertNoTestMethod()
+    {
+        if (_action != null || _func != null)
+            throw new MoreThanOneTestMethod();
+    }
 
     public abstract void Dispose();
 
@@ -22,29 +39,6 @@ public abstract class TestBase<TResult> : Mocking, IDisposable
     protected virtual void Given() { }
     protected virtual void Setup() { }
     protected internal abstract void Instantiate();
-    protected abstract void Act();
-
-    protected internal void Execute(Action action, Func<TResult> func)
-    {
-        if (action is null)
-        {
-            CollectResult(func ?? throw new NoTestMethod());
-            return;
-        }
-        if (func is not null)
-            throw new MoreThanOneTestMethod();
-        CatchError(action);
-    }
-
-    protected internal Task Execute(Func<Task> action, Func<Task<TResult>> func)
-    {
-        if (action is null)
-            CollectResult(func ?? throw new NoTestMethod());
-        else if (func is null)
-            CatchError(action);
-        else throw new MoreThanOneTestMethod();
-        return Task.CompletedTask;
-    }
 
     private TestResult<TResult> CreateTestResult()
     {
@@ -55,11 +49,15 @@ public abstract class TestBase<TResult> : Mocking, IDisposable
         return new(_result, _error, this);
     }
 
-    private void CollectResult(Func<Task<TResult>> act) => CollectResult(() => AsyncHelper.Execute(act));
+    private void Act()
+    {
+        if (_action is null)
+            CollectResult(_func ?? throw new NoTestMethod());
+        else
+            CatchError(_action);
+    }
 
     private void CollectResult(Func<TResult> act) => CatchError(() => _result = act());
-
-    private void CatchError(Func<Task> act) => CatchError(() => AsyncHelper.Execute(act));
 
     private void CatchError(Action act)
     {

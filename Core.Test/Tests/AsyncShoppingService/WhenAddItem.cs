@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 using WhenGivenThen.Test.Subjects;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
+public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
 {
     protected int CartId = 123;
     protected ShoppingCartItem[] CartItems;
     protected readonly ShoppingCartItem NewItem = new("N1");
 
-    protected override Func<Task<ShoppingCart>> Func => () => SUT.AddToCart(CartId, NewItem);
+    protected WhenAddItem() => When(() => SUT.AddToCart(CartId, NewItem));
 
     protected override void Setup()
         => Mocked<IShoppingCartRepository>()

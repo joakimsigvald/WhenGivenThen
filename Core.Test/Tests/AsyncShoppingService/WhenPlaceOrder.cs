@@ -1,14 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 using WhenGivenThen.Test.Subjects;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public class WhenPlaceOrder : TestAsyncShoppingService<object>
+public abstract class WhenPlaceOrder : TestAsyncShoppingService<object>
 {
     protected ShoppingCart Cart;
-    protected override Func<Task> Action => () => SUT.PlaceOrder(Cart);
+
+    protected WhenPlaceOrder() => When(() => SUT.PlaceOrder(Cart));
+
     public class GivenOpenCart : WhenPlaceOrder
     {
         protected override void Given() => Cart = new() { IsOpen = true };

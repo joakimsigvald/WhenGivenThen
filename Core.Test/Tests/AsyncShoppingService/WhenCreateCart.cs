@@ -1,14 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 using WhenGivenThen.Test.Subjects;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public class WhenCreateCart : TestAsyncShoppingService<ShoppingCart>
+public abstract class WhenCreateCart : TestAsyncShoppingService<ShoppingCart>
 {
     protected int Id;
-    protected override Func<Task<ShoppingCart>> Func => () => SUT.CreateCart(Id);
+
+    protected WhenCreateCart() => When(() => SUT.CreateCart(Id));
 
     public class GivenIdIsOne : WhenCreateCart
     {
