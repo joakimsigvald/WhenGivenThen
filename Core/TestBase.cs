@@ -7,28 +7,20 @@ namespace WhenGivenThen;
 /// </summary>
 public abstract class TestBase<TResult> : Mocking, IDisposable
 {
-    private Action _action = null;
-    private Func<TResult> _func = null;
+    private Action _action;
+    private Func<TResult> _func;
     private Exception _error;
     private TResult _result;
     private TestResult<TResult> _then;
 
-    protected void When(Action action)
-    {
-        AssertNoTestMethod();
-        _action = action;
-    }
+    protected TestBase<TResult> When(Action action) => When(action, null);
 
-    protected void When(Func<TResult> func)
-    {
-        AssertNoTestMethod();
-        _func = func;
-    }
+    protected TestBase<TResult> When(Func<TResult> func) => When(null, func);
 
-    private void AssertNoTestMethod()
+    private TestBase<TResult> When(Action action, Func<TResult> func)
     {
-        if (_action != null || _func != null)
-            throw new MoreThanOneTestMethod();
+        (_action, _func) = _action is null && _func is null ? (action, func) : throw new MoreThanOneTestMethod();
+        return this;
     }
 
     public abstract void Dispose();
