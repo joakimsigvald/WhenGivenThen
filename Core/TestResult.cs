@@ -8,21 +8,24 @@ namespace WhenGivenThen;
 public class TestResult<TResult>
 {
     private readonly Mocking _mocking;
+    private readonly Exception _error;
 
     public TestResult(TResult result, Exception error, Mocking mocking)
     {
         Result = result;
-        Error = error;
+        _error = error;
         _mocking = mocking;
     }
 
     public TResult Result { get; }
-    public Exception Error { get; }
-    public void Throws<TError>() => Assert.IsType<TError>(Error);
+    public void Throws<TError>() => Assert.IsType<TError>(_error);
+    public void Throws() => Assert.NotNull(_error);
+    public void NotThrows<TError>() => Assert.IsNotType<TError>(_error);
+    public void NotThrows() => Assert.Null(_error);
 
     public void Throws<TError>(Action<TError> assert)
     {
-        var ex = Assert.IsType<TError>(Error);
+        var ex = Assert.IsType<TError>(_error);
         assert(ex);
     }
 
