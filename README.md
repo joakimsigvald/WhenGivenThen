@@ -57,7 +57,7 @@ namespace MyProject.Test.Calculator;
 public abstract class WhenAddTwoNumbers : TestStatic<int>
 {
     protected int X, Y;
-    protected When() => When(() => MyProject.Calculator.Add(X, Y);
+    public WhenAddTwoNumbers() => When(() => MyProject.Calculator.Add(X, Y);
 
     public class Given_1_And_1 : WhenAdd
     {
