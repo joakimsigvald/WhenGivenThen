@@ -9,18 +9,18 @@
 	  <RootNamespace>WhenGivenThen</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
-    <PackageTags>xunit test when given then</PackageTags>
+    <PackageTags>test unit given when then mock xunit moq</PackageTags>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen.git</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>3.0.1</PackageVersion>
+    <PackageVersion>3.1.0</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>Add more than one arrangements in Given, in the order they will be applied when test pipeline is executed</PackageReleaseNotes>
+    <PackageReleaseNotes>Added convenience methods Set and Setup that can be overridden in test, as alternative to calling Given with lambda expression or method reference</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.18.4" />

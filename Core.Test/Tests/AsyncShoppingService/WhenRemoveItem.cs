@@ -10,11 +10,11 @@ public abstract class WhenRemoveItem : TestAsyncShoppingService<ShoppingCart>
     protected readonly ShoppingCartItem Item = new("X");
     private ShoppingCart _cart;
 
-    protected WhenRemoveItem() => When(() => SUT.RemoveFromCart(CartId, Cart.Items[0])).Given(Setup);
+    protected WhenRemoveItem() => When(() => SUT.RemoveFromCart(CartId, Cart.Items[0]));
 
     protected ShoppingCart Cart => _cart ??= new() { Id = CartId, Items = CartItems };
 
-    private void Setup()
+    protected override void Setup()
         => Mocked<IShoppingCartRepository>()
             .Setup(repo => repo.GetCart(CartId))
             .ReturnsAsync(new ShoppingCart { Id = CartId, Items = CartItems });

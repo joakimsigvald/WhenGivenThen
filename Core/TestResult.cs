@@ -7,10 +7,10 @@ namespace WhenGivenThen;
 
 public class TestResult<TResult>
 {
-    private readonly Mocking _mocking;
+    private readonly IMocking _mocking;
     private readonly Exception _error;
 
-    public TestResult(TResult result, Exception error, Mocking mocking)
+    public TestResult(TResult result, Exception error, IMocking mocking)
     {
         Result = result;
         _error = error;
@@ -52,6 +52,5 @@ public class TestResult<TResult>
         where TObject : class
         => Mocked<TObject>().Verify(expression, times);
 
-    private Mock<TObject> Mocked<TObject>() where TObject : class
-        => _mocking.Mocked<TObject, TObject>(_ => _);
+    private Mock<TObject> Mocked<TObject>() where TObject : class => _mocking.GetMock<TObject>();
 }

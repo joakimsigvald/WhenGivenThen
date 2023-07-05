@@ -5,7 +5,7 @@ using System.Linq;
 namespace WhenGivenThen;
 
 /// <summary>
-/// Not intended for override. Override one of TestStatic, TestSubject, TestStaticAsync or TestSubjectAsync instead
+/// Not intended for direct override. Override one of TestStatic, TestSubject, TestStaticAsync or TestSubjectAsync instead
 /// </summary>
 public abstract class TestBase<TResult> : Mocking, ITestPipeline<TResult>, IDisposable
 {
@@ -48,11 +48,17 @@ public abstract class TestBase<TResult> : Mocking, ITestPipeline<TResult>, IDisp
         (_command, _function) = (command, function); return this;
     }
 
-    protected internal abstract void Instantiate();
+    protected virtual void Set() { }
+
+    protected virtual void Setup() { }
+
+    protected abstract void Instantiate();
 
     private TestResult<TResult> CreateTestResult()
     {
-        foreach (var arr in _arrangements) arr();
+        Set();
+        foreach (var arrange in _arrangements) arrange();
+        Setup();
         Instantiate();
         CatchError(_command ?? GetResult);
         return new(_result, _error, this);

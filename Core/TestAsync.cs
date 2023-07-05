@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace WhenGivenThen;
 
 /// <summary>
-/// Not intended for override. Override either TestStaticAsync or TestSubjectAsync instead
+/// Not intended for direct override. Override either TestStaticAsync or TestSubjectAsync instead
 /// </summary>
 public abstract class TestAsync<TResult> : TestBase<TResult>
 {

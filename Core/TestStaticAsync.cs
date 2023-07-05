@@ -2,5 +2,5 @@
 
 public abstract class TestStaticAsync<TResult> : TestAsync<TResult>
 {
-    protected internal override sealed void Instantiate() { }
+    protected override sealed void Instantiate() { }
 }

@@ -12,12 +12,11 @@ public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
     protected readonly ShoppingCartItem NewItem = new("N1");
 
     protected WhenAddItem() => When(() => SUT.AddToCart(CartId, NewItem))
-        .Given(() => CartItems ??= Array.Empty<ShoppingCartItem>(), Setup);
-
-    private void Setup()
-        => Mocked<IShoppingCartRepository>()
-            .Setup(repo => repo.GetCart(CartId))
-            .ReturnsAsync(new ShoppingCart { Id = CartId, Items = CartItems });
+        .Given(
+        () => CartItems ??= Array.Empty<ShoppingCartItem>(),
+        () => Mocked<IShoppingCartRepository>()
+        .Setup(repo => repo.GetCart(CartId))
+        .ReturnsAsync(new ShoppingCart { Id = CartId, Items = CartItems }));
 
     public class GivenEmptyCart : WhenAddItem
     {
