@@ -11,12 +11,12 @@ public abstract class WhenPlaceOrder : TestAsyncShoppingService<object>
 
     public class GivenOpenCart : WhenPlaceOrder
     {
-        protected override void Given() => Cart = new() { IsOpen = true };
+        public GivenOpenCart() => Given(() => Cart = new() { IsOpen = true });
         [Fact] public void ThenOrderIsCreated() => Then.The<IOrderService>(_ => _.CreateOrder(Cart));
     }
     public class GivenClosedCart : WhenPlaceOrder
     {
-        protected override void Given() => Cart = new() { IsOpen = false };
+        public GivenClosedCart() => Given(() => Cart = new() { IsOpen = false });
         [Fact] public void ThenThrowsNotPurcheable() => Then.Throws<NotPurcheable>();
     }
 }

@@ -11,13 +11,13 @@ public abstract class WhenCreateCart : TestAsyncShoppingService<ShoppingCart>
 
     public class GivenIdIsOne : WhenCreateCart
     {
-        protected override void Given() => Id = 1;
+        public GivenIdIsOne() => Given(() => Id = 1);
         [Fact] public void ThenCartIdIsOne() => Then.Result.Id.Is(Id);
     }
 
     public class GivenIdIsTwo : WhenCreateCart
     {
-        protected override void Given() => Id = 2;
+        public GivenIdIsTwo() => Given(() => Id = 2);
         [Fact] public void ThenCartIdIsTwo() => Then.Result.Id.Is(Id);
     }
 }

@@ -11,7 +11,7 @@ public abstract class WhenPlaceOrder : TestShoppingService<object>
 
     public class GivenCart : WhenPlaceOrder
     {
-        protected override void Given() => Cart = new();
+        public GivenCart() => Given(() => Cart = new());
         [Fact] public void ThenOrderIsCreated() => Then.The<IOrderService>(_ => _.CreateOrder(Cart));
     }
 }

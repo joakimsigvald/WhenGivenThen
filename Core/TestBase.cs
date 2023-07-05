@@ -1,55 +1,62 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WhenGivenThen;
 
 /// <summary>
-/// Not intended for override. Override either TestStatic or TestSubject instead
+/// Not intended for override. Override one of TestStatic, TestSubject, TestStaticAsync or TestSubjectAsync instead
 /// </summary>
-public abstract class TestBase<TResult> : Mocking, IDisposable
+public abstract class TestBase<TResult> : Mocking, ITestPipeline<TResult>, IDisposable
 {
-    private Action _action;
-    private Func<TResult> _func;
+    private readonly Stack<Action> _arrangements = new();
+    private Action _command;
+    private Func<TResult> _function;
     private Exception _error;
     private TResult _result;
     private TestResult<TResult> _then;
 
-    protected TestBase<TResult> When(Action action) => When(action, null);
-
-    protected TestBase<TResult> When(Func<TResult> func) => When(null, func);
-
-    private TestBase<TResult> When(Action action, Func<TResult> func)
+    public ITestPipeline<TResult> Given(Action arrange)
     {
-        (_action, _func) = _action is null && _func is null ? (action, func) : throw new MoreThanOneTestMethod();
-        return this;
+        if (_then != null)
+            throw new InvalidOperationException("Given must be called before Then");
+        _arrangements.Push(arrange); return this;
     }
+
+    public TestResult<TResult> Then => _then ??= CreateTestResult();
 
     public abstract void Dispose();
 
     protected TResult Result => Then.Result;
-    protected TestResult<TResult> Then => _then ??= CreateTestResult();
 
-    protected virtual void Given() { }
-    protected virtual void Setup() { }
+    protected ITestPipeline<TResult> When(Action act) 
+        => When(act ?? throw new InvalidOperationException("Act cannot be null"), null);
+
+    protected ITestPipeline<TResult> When(Func<TResult> act) 
+        => When(null, act ?? throw new InvalidOperationException("Act cannot be null"));
+
+    protected ITestPipeline<TResult> When(Action command, Func<TResult> function)
+    {
+        if (_command != null || _function != null)
+            throw new InvalidOperationException("When may only be called once");
+        if (_arrangements.Any())
+            throw new InvalidOperationException("When must be called before Given");
+        if (_then != null)
+            throw new InvalidOperationException("When must be called before Then");
+        (_command, _function) = (command, function); return this;
+    }
+
     protected internal abstract void Instantiate();
 
     private TestResult<TResult> CreateTestResult()
     {
-        Given();
-        Setup();
+        foreach (var arr in _arrangements) arr();
         Instantiate();
-        Act();
+        CatchError(_command ?? GetResult);
         return new(_result, _error, this);
     }
 
-    private void Act()
-    {
-        if (_action is null)
-            CollectResult(_func ?? throw new NoTestMethod());
-        else
-            CatchError(_action);
-    }
-
-    private void CollectResult(Func<TResult> act) => CatchError(() => _result = act());
+    private void GetResult() => _result = _function();
 
     private void CatchError(Action act)
     {

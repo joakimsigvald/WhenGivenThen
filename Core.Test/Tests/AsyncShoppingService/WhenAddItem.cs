@@ -11,16 +11,16 @@ public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
     protected ShoppingCartItem[] CartItems;
     protected readonly ShoppingCartItem NewItem = new("N1");
 
-    protected WhenAddItem() => When(() => SUT.AddToCart(CartId, NewItem));
+    protected WhenAddItem() => When(() => SUT.AddToCart(CartId, NewItem)).Given(Setup);
 
-    protected override void Setup()
+    private void Setup()
         => Mocked<IShoppingCartRepository>()
             .Setup(repo => repo.GetCart(CartId))
             .ReturnsAsync(new ShoppingCart { Id = CartId, Items = CartItems });
 
     public class GivenEmptyCart : WhenAddItem
     {
-        protected override void Given() => CartItems = Array.Empty<ShoppingCartItem>();
+        public GivenEmptyCart() => Given(() => CartItems = Array.Empty<ShoppingCartItem>());
         [Fact] public void ThenCartIsNotEmpty() => Then.Result.Items.IsNotEmpty();
         [Fact] public void ThenCartHasOneItem() => Then.Result.Items.IsOne();
         [Fact] public void TheIdIsPreserved() => Then.Result.Id.Is(CartId);
@@ -29,7 +29,7 @@ public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
 
     public class GivenCartWithOneItem : WhenAddItem
     {
-        protected override void Given() => CartItems = new[] { new ShoppingCartItem("A1") };
+        public GivenCartWithOneItem() => Given(() => CartItems = new[] { new ShoppingCartItem("A1") });
         [Fact] public void ThenCartHasTwoItems() => Then.Result.Items.Counts(2);
         [Fact] public void ThenNewItemIsLast() => Then.Result.Items.IsLast(
             Result.Items.Single(it => it.Sku == NewItem.Sku));

@@ -16,22 +16,15 @@
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>2.0.2</PackageVersion>
+    <PackageVersion>3.0.0</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>Completed readme with basic guides and examples</PackageReleaseNotes>
+    <PackageReleaseNotes>Breaking change. New more clean, flexible and fluent test pipeline. Less relient on inheritance. Removed unnecessary dependencies</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1">
-      <PrivateAssets>none</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Moq" Version="4.18.4" />
     <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
-      <PrivateAssets>none</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <None Include="..\README.md" Pack="true" PackagePath="\" />
     <None Include="images\icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
