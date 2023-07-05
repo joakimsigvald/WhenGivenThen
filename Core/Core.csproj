@@ -16,11 +16,11 @@
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>3.0.0</PackageVersion>
+    <PackageVersion>3.0.1</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>Breaking change. New more clean, flexible and fluent test pipeline. Less relient on inheritance. Removed unnecessary dependencies</PackageReleaseNotes>
+    <PackageReleaseNotes>Add more than one arrangements in Given, in the order they will be applied when test pipeline is executed</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.18.4" />

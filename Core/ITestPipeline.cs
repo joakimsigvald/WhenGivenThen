@@ -4,6 +4,6 @@ namespace WhenGivenThen;
 
 public interface ITestPipeline<TResult>
 {
-    ITestPipeline<TResult> Given(Action arrange);
+    ITestPipeline<TResult> Given(params Action[] arrangements);
     TestResult<TResult> Then { get; }
 }

@@ -11,7 +11,8 @@ public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
     protected ShoppingCartItem[] CartItems;
     protected readonly ShoppingCartItem NewItem = new("N1");
 
-    protected WhenAddItem() => When(() => SUT.AddToCart(CartId, NewItem)).Given(Setup);
+    protected WhenAddItem() => When(() => SUT.AddToCart(CartId, NewItem))
+        .Given(() => CartItems ??= Array.Empty<ShoppingCartItem>(), Setup);
 
     private void Setup()
         => Mocked<IShoppingCartRepository>()
@@ -20,7 +21,6 @@ public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
 
     public class GivenEmptyCart : WhenAddItem
     {
-        public GivenEmptyCart() => Given(() => CartItems = Array.Empty<ShoppingCartItem>());
         [Fact] public void ThenCartIsNotEmpty() => Then.Result.Items.IsNotEmpty();
         [Fact] public void ThenCartHasOneItem() => Then.Result.Items.IsOne();
         [Fact] public void TheIdIsPreserved() => Then.Result.Id.Is(CartId);

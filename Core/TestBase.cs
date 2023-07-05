@@ -16,11 +16,13 @@ public abstract class TestBase<TResult> : Mocking, ITestPipeline<TResult>, IDisp
     private TResult _result;
     private TestResult<TResult> _then;
 
-    public ITestPipeline<TResult> Given(Action arrange)
+    public ITestPipeline<TResult> Given(params Action[] arrangements)
     {
         if (_then != null)
             throw new InvalidOperationException("Given must be called before Then");
-        _arrangements.Push(arrange); return this;
+        foreach (var arrange in arrangements.Reverse())
+            _arrangements.Push(arrange);
+        return this;
     }
 
     public TestResult<TResult> Then => _then ??= CreateTestResult();
@@ -29,10 +31,10 @@ public abstract class TestBase<TResult> : Mocking, ITestPipeline<TResult>, IDisp
 
     protected TResult Result => Then.Result;
 
-    protected ITestPipeline<TResult> When(Action act) 
+    protected ITestPipeline<TResult> When(Action act)
         => When(act ?? throw new InvalidOperationException("Act cannot be null"), null);
 
-    protected ITestPipeline<TResult> When(Func<TResult> act) 
+    protected ITestPipeline<TResult> When(Func<TResult> act)
         => When(null, act ?? throw new InvalidOperationException("Act cannot be null"));
 
     protected ITestPipeline<TResult> When(Action command, Func<TResult> function)
