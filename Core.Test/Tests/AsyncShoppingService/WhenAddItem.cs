@@ -21,7 +21,7 @@ public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
     public class GivenEmptyCart : WhenAddItem
     {
         [Fact] public void ThenCartIsNotEmpty() => Then.Result.Items.IsNotEmpty();
-        [Fact] public void ThenCartHasOneItem() => Then.Result.Items.IsOne();
+        [Fact] public void ThenCartHasOneItem() => Then.Result.Items.HasOne();
         [Fact] public void TheIdIsPreserved() => Then.Result.Id.Is(CartId);
         [Fact] public void ThenCartIsStored() => Then.The<IShoppingCartRepository>(_ => _.StoreCart(Result));
     }
@@ -29,12 +29,10 @@ public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
     public class GivenCartWithOneItem : WhenAddItem
     {
         public GivenCartWithOneItem() => Given(() => CartItems = new[] { new ShoppingCartItem("A1") });
-        [Fact] public void ThenCartHasTwoItems() => Then.Result.Items.Counts(2);
-        [Fact] public void ThenNewItemIsLast() => Then.Result.Items.IsLast(
-            Result.Items.Single(it => it.Sku == NewItem.Sku));
-        [Fact] public void ThenNewItemIsCloned() => Then.Result.Items.Last().IsNotSameAs(NewItem);
-        [Fact] public void ThenItemsAreNotNull() => Then.Result.Items.Each(it => it.IsNot(null));
-        [Fact] public void ThenItemsHaveLineNumbers() 
-            => Then.Result.Items.Each((it, i) => it.LineNumber.Is(i + 1));
+        [Fact] public void ThenCartHasTwoItems() => Then.Result.Items.HasCount(2);
+        [Fact] public void ThenNewItemIsLast() => Then.Result.Items.Last().Sku.Is(NewItem.Sku);
+        [Fact] public void ThenNewItemIsCloned() => Then.Result.Items.Last().IsNot(NewItem);
+        [Fact] public void ThenItemsAreNotNull() => Then.Result.Items.Each(it => it != null);
+        [Fact] public void ThenItemsHaveLineNumbers() => Then.Result.Items.Each((it, i) => it.LineNumber == i + 1);
     }
 }
