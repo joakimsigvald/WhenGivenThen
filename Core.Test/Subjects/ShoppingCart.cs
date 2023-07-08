@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace WhenGivenThen.Test.Subjects;
 
-public class ShoppingCart
+public record ShoppingCart
 {
     private ShoppingCartItem[] _items = Array.Empty<ShoppingCartItem>();
 
