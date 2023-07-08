@@ -59,7 +59,7 @@ namespace MyProject.Test.Calculator;
 public abstract class WhenAddTwoNumbers : TestStatic<int>
 {
     protected int X, Y;
-    public WhenAddTwoNumbers() => When(() => MyProject.Calculator.Add(X, Y);
+    public WhenAddTwoNumbers() => When(() => MyProject.Calculator.Add(X, Y));
 
     public class Given_1_And_1 : WhenAdd // Using Set to arrange
     {
@@ -85,7 +85,7 @@ namespace MyProject.Test.Validator;
 public abstract class WhenVerifyAreEqual : TestStatic<object>
 {
     protected int X, Y;
-    protected WhenVerifyAreEqual() => When(() => MyProject.Validator.VerifyAreEqual(X, Y);
+    protected WhenVerifyAreEqual() => When(() => MyProject.Validator.VerifyAreEqual(X, Y));
 
     public class Given_1_And_2 : WhenVerifyAreEqual
     {

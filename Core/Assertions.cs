@@ -5,7 +5,7 @@ using Xunit;
 
 namespace WhenGivenThen;
 
-public static class Assertions
+public static class Assertions 
 {
     /// <summary>
     /// Xunit.Assert.Equal
