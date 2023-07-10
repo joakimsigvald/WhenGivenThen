@@ -16,11 +16,11 @@
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>3.1.4</PackageVersion>
+    <PackageVersion>3.1.5</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>Implemented qualified Is for struct types</PackageReleaseNotes>
+    <PackageReleaseNotes>Bugfix, recreating assertion Is for struct</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.18.4" />

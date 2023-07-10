@@ -1,0 +1,9 @@
+* Automock constructor
+- choose the first public constructor with most arguments
+- auto-generate mock or default values for all arguments
+- replace default argument with The<Type>().Is([Create replacement]) or similar syntax
+* Provide lambda with arguments directly to When and argument values directly to given
+- for instance if method is Calculator.Add(int x, int y), write When(Calculator.Add).Given(1, 2).Then.Result.Is(3)
+- use many varuiants of generic When and Given, for instance When<T1>(Func<TR, T1> fun) and When<T1, T2>(Func<TR, T1, T2> fun),
+up to 6 arguments
+- same for Given: Given<T1>(T1 arg1) and Given<T1, T2>(T1 arg1, T2 arg2)

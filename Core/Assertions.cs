@@ -10,6 +10,12 @@ public static class Assertions
     /// <summary>
     /// Xunit.Assert.Equal
     /// </summary>
+    public static void Is<TValue>(this TValue actual, TValue expected) where TValue : struct
+        => Assert.Equal(expected, actual);
+
+    /// <summary>
+    /// Xunit.Assert.Equal
+    /// </summary>
     public static void Is(this decimal actual, decimal expected, int precision)
         => Assert.Equal(expected, actual, precision);
 
