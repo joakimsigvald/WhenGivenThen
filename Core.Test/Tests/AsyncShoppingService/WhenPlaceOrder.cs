@@ -3,7 +3,7 @@ using WhenGivenThen.Test.Subjects;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public abstract class WhenPlaceOrder : TestAsyncShoppingService<object>
+public abstract class WhenPlaceOrder : AsyncShoppingServiceSpec<object>
 {
     protected ShoppingCart Cart;
 

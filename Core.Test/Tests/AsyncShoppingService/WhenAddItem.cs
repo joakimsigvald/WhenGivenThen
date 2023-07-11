@@ -5,7 +5,7 @@ using WhenGivenThen.Test.Subjects;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
+public abstract class WhenAddItem : AsyncShoppingServiceSpec<ShoppingCart>
 {
     protected int CartId = 123;
     protected ShoppingCartItem[] CartItems;
@@ -14,15 +14,15 @@ public abstract class WhenAddItem : TestAsyncShoppingService<ShoppingCart>
     protected WhenAddItem() => When(() => SUT.AddToCart(CartId, NewItem))
         .Given(
         () => CartItems ??= Array.Empty<ShoppingCartItem>(),
-        () => Mocked<IShoppingCartRepository>()
+        () => Make<IShoppingCartRepository>()
         .Setup(repo => repo.GetCart(CartId))
         .ReturnsAsync(new ShoppingCart { Id = CartId, Items = CartItems }));
 
     public class GivenEmptyCart : WhenAddItem
     {
-        [Fact] public void ThenCartIsNotEmpty() => Then.Result.Items.IsNotEmpty();
-        [Fact] public void ThenCartHasOneItem() => Then.Result.Items.HasOne();
-        [Fact] public void TheIdIsPreserved() => Then.Result.Id.Is(CartId);
+        [Fact] public void ThenCartIsNotEmpty() => Result.Items.IsNotEmpty();
+        [Fact] public void ThenCartHasOneItem() => Result.Items.HasOne();
+        [Fact] public void TheIdIsPreserved() => Result.Id.Is(CartId);
         [Fact] public void ThenCartIsStored() => Then.The<IShoppingCartRepository>(_ => _.StoreCart(Result));
     }
 

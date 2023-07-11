@@ -3,7 +3,7 @@ using Xunit;
 
 namespace WhenGivenThen.Test.Assertions;
 
-public abstract class WhenIsEqualToEnumerableInt : TestStatic<object>
+public abstract class WhenIsEqualToEnumerableInt : StaticSpec<object>
 {
     protected IEnumerable<int> Actual;
     protected IEnumerable<int> Expected;

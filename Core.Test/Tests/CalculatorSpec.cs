@@ -3,22 +3,22 @@ using Xunit;
 
 namespace WhenGivenThen.Test.Tests;
 
-public class TestCalculator : TestStatic<int>
+public class CalculatorSpec : StaticSpec<int>
 {
     [Theory]
     [InlineData(1, 1, 2)]
     [InlineData(3, 4, 7)]
-    public void WhenAddThenReturnSum(int x, int y, int sum)
+    public void WhenAdd_ThenReturnSum(int x, int y, int sum)
     => When(() => Calculator.Add(x, y)).Then.Result.Is(sum);
 
     [Theory]
     [InlineData(1, 1, 1)]
     [InlineData(3, 4, 12)]
-    public void WhenMultiplyThenReturnProduct(int x, int y, int product)
+    public void WhenMultiply_ThenReturnProduct(int x, int y, int product)
         => When(() => Calculator.Multiply(x, y)).Then.Result.Is(product);
 }
 
-public abstract class WhenAdd : TestStatic<int>
+public abstract class WhenAdd : StaticSpec<int>
 {
     protected int X;
     protected int Y;

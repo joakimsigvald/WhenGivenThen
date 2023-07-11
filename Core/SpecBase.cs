@@ -7,7 +7,7 @@ namespace WhenGivenThen;
 /// <summary>
 /// Not intended for direct override. Override one of TestStatic, TestSubject, TestStaticAsync or TestSubjectAsync instead
 /// </summary>
-public abstract class TestBase<TResult> : Mocking, ITestPipeline<TResult>, IDisposable
+public abstract class SpecBase<TResult> : Mocking, ITestPipeline<TResult>, IDisposable
 {
     private readonly Stack<Action> _arrangements = new();
     private Action _command;

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace WhenGivenThen.Test.Assertions;
 
-public abstract class WhenEqualToEnumerableObject : TestStatic<object>
+public abstract class WhenEqualToEnumerableObject : StaticSpec<object>
 {
     protected IEnumerable<ShoppingCart> Actual;
     protected IEnumerable<ShoppingCart> Expected;

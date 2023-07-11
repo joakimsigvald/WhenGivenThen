@@ -7,10 +7,10 @@ namespace WhenGivenThen;
 
 public class TestResult<TResult>
 {
-    private readonly IMocking _mocking;
+    private readonly IMocked _mocking;
     private readonly Exception _error;
 
-    public TestResult(TResult result, Exception error, IMocking mocking)
+    public TestResult(TResult result, Exception error, IMocked mocking)
     {
         Result = result;
         _error = error;

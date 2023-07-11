@@ -4,7 +4,7 @@ using Xunit;
 
 namespace WhenGivenThen.Test.Assertions;
 
-public abstract class WhenIsLikeSetOfInt : TestStatic<object>
+public abstract class WhenIsLikeSetOfInt : StaticSpec<object>
 {
     protected ISet<int> Actual;
     protected ISet<int> Expected;

@@ -12,12 +12,13 @@ It is assumed that you are already familiar with Xunit and Moq, or similar test 
 ### Test a static method with [Theory]
 
 If you are used to writing one test class per production class and use Theory for test input, you can use a similar style to write minimalistic tests with a minimum of clutter.
-First you create a test pipeline by calling `When` with a lambda expression to test.
-Then you can verify the result by calling `Then` on the returned pipeline and check the result with `Is`
+First you create your test-class, or *Specification*, overriding `StaticSpec<[TReturn]>` with the expected return type as generic argument.
+Then create a test pipeline by calling `When` with a lambda expression to test.
+Finally you can verify the result by calling `Then` on the returned pipeline and check the result with `Is`
 
 Example:
 ```
-public class TestCalculator : TestStatic<int>
+public class CalculatorSpec : StaticSpec<int>
 {
     [Theory]
     [InlineData(1, 1, 2)]
@@ -41,7 +42,7 @@ Within that folder, create one test-class per method to test.
 
 ### Test a static method with [Fact]
 
-* To test a static method `[MyClass].[MyMethod]` returning `[ReturnType]`, Create a new abstract class named `When[MyMethod]` inheriting `TestStatic<[ReturnType]>`.
+* To test a static method `[MyClass].[MyMethod]` returning `[ReturnType]`, Create a new abstract class named `When[MyMethod]` inheriting `StaticSpec<[ReturnType]>`.
 * Create a parameterless constructor that calls `When` with a lambda expression calling the method to test: `When(() => [MyClass].[MyMethod]([Args...]))`.
 * Each argument should be defined as a protected field at the top of the class.
 
@@ -56,7 +57,7 @@ Example:
 ```
 namespace MyProject.Test.Calculator;
 
-public abstract class WhenAddTwoNumbers : TestStatic<int>
+public abstract class WhenAddTwoNumbers : StaticSpec<int>
 {
     protected int X, Y;
     public WhenAddTwoNumbers() => When(() => MyProject.Calculator.Add(X, Y));
@@ -82,7 +83,7 @@ Example:
 ```
 namespace MyProject.Test.Validator;
 
-public abstract class WhenVerifyAreEqual : TestStatic<object>
+public abstract class WhenVerifyAreEqual : StaticSpec<object>
 {
     protected int X, Y;
     protected WhenVerifyAreEqual() => When(() => MyProject.Validator.VerifyAreEqual(X, Y));
@@ -100,9 +101,10 @@ public abstract class WhenVerifyAreEqual : TestStatic<object>
 ```
 
 ### Test a class with dependencies
-* To test an instance method `[MyClass].[MyMethod]`, inherit `WhenGivenThen.TestSubject<[MyClass], TResult>`.
-* Override the method CreateSUT and return a new instance of the class to test.
-* For each method to test, create an abstract class named `When[MyMethod]` inheriting `Test[MyClass]` in the same way as for static methods.
+* To test an instance method `[MyClass].[MyMethod]`, inherit `WhenGivenThen.SubjectSpec<[MyClass], TResult>`.
+* It is recommended practice to create a common baseclass for all tests of `[MyClass]`, named `[MyClass]Spec`.
+* Override the method CreateSUT and return a new instance of `[MyClass]`.
+* For each method to test, create an abstract class named `When[MyMethod]` inheriting `[MyClass]Spec` in the same way as for static methods.
 
 * To mock behaviour of any dependency, either override `Setup` or provide the mocking by calling `Given`. Each call to `Given` will provide additional arrangement that will be applied on test execution on the inversed order.
 * The framework gives you direct access to one (lazily generated) mock each of any class type type. You can access a mock by `The<MyMockedInterface>()`.
@@ -113,12 +115,12 @@ Example:
 ```
 namespace MyProject.Test.ShoppingService;
 
-public abstract class TestShoppingService<TResult> : TestSubject<MyProject.ShoppingService, TResult>
+public abstract class ShoppingServiceSpec<TResult> : SubjectSpec<MyProject.ShoppingService, TResult>
 {
     protected override Subjects.ShoppingService CreateSUT() => new(The<ICartRepository>(), The<IOrderService>());
 }
 
-public abstract class WhenPlaceOrder : TestShoppingService<object>
+public abstract class WhenPlaceOrder : ShoppingServiceSpec<object>
 {
     protected ShoppingCart Cart;
 

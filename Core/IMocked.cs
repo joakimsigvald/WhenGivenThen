@@ -1,7 +1,7 @@
 ﻿using Moq;
 namespace WhenGivenThen;
 
-public interface IMocking
+public interface IMocked
 {
     Mock<TObject> GetMock<TObject>() where TObject : class;
 }

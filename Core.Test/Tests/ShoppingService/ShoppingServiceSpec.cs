@@ -2,7 +2,7 @@
 
 namespace WhenGivenThen.Test.Tests.ShoppingService;
 
-public abstract class TestShoppingService<TResult> : TestSubject<Subjects.ShoppingService, TResult>
+public abstract class ShoppingServiceSpec<TResult> : SubjectSpec<Subjects.ShoppingService, TResult>
 {
     protected override Subjects.ShoppingService CreateSUT() => new(The<IOrderService>());
 }
