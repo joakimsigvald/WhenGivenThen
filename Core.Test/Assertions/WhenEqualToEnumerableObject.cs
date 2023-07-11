@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhenGivenThen.Assertions;
 using WhenGivenThen.Test.Subjects;
 using Xunit;
 

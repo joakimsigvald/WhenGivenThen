@@ -2,6 +2,7 @@
 using System.Linq;
 using Xunit;
 using WhenGivenThen.Test.Subjects;
+using WhenGivenThen.Assertions;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 

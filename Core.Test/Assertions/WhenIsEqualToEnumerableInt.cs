@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WhenGivenThen.Assertions;
 using Xunit;
 
 namespace WhenGivenThen.Test.Assertions;

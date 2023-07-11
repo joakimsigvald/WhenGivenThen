@@ -1,4 +1,5 @@
-﻿using WhenGivenThen.Test.Subjects;
+﻿using WhenGivenThen.Assertions;
+using WhenGivenThen.Test.Subjects;
 using Xunit;
 
 namespace WhenGivenThen.Test.Tests;
