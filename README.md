@@ -1,13 +1,19 @@
 # When-Given-Then: A fluent unit testing framework
 
 Framework for writing and running automated tests in .Net in a flexible and fluent style, 
-based on the popular "Given-When-Then" pattern, built upon XUnit and Moq.
+based on the popular "Given-When-Then" pattern, built upon XUnit, Moq and FluentAssertions.
 
 Whether you are beginner or expert in unit-testing, this framework will help you to write more descriptive tests with less code.
 
 ## Usage
 
 It is assumed that you are already familiar with Xunit and Moq, or similar test and mocking frameworks.
+This package includes FluentAssertions, but also comes with its own, more limited but less wordy assertion methods, based on the verb `Is` instead of `Should`.
+Is-assertions has the same return-type as Should-assertions, so they can be combined in the same sentence.
+
+Is-assertions are recommended to make the tests read more like specifications, stating facts rather than expectations.
+
+For instance `When(SUT.AddNumbers(X, Y)).Given((X, Y) = (1, 2).Then.Result.Is(3)`
 
 ### Test a static method with [Theory]
 
