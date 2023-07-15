@@ -9,7 +9,7 @@ Whether you are beginner or expert in unit-testing, this framework will help you
 
 It is assumed that you are already familiar with Xunit and Moq, or similar test and mocking frameworks.
 This package includes FluentAssertions, but also comes with its own, more limited but less wordy assertion methods, based on the verb `Is` instead of `Should`.
-Is-assertions has the same return-type as Should-assertions, so they can be combined in the same sentence.
+Is-assertions have the same return-types as Should-assertions, so they can be combined in the same sentence.
 
 Is-assertions are recommended to make the tests read more like specifications, stating facts rather than expectations.
 
