@@ -3,8 +3,8 @@
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
 public abstract class AsyncShoppingServiceSpec<TResult>
-    : SubjectSpecAsync<Subjects.AsyncShoppingService, TResult>
+    : SubjectSpecAsync<Subjects.ShoppingServiceAsync, TResult>
 {
-    protected override Subjects.AsyncShoppingService CreateSUT()
+    protected override Subjects.ShoppingServiceAsync CreateSUT()
         => new(The<IOrderService>(), The<IShoppingCartRepository>());
 }

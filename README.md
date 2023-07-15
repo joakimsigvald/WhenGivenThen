@@ -24,13 +24,13 @@ public class CalculatorSpec : StaticSpec<int>
     [InlineData(1, 1, 2)]
     [InlineData(3, 4, 7)]
     public void WhenAddThenReturnSum(int x, int y, int sum)
-        => When(() => Calculator.Add(x, y)).Then.Result.Is(sum);
+        => When(() => Calculator.Add(x, y)).Result.Is(sum);
 
     [Theory]
     [InlineData(1, 1, 1)]
     [InlineData(3, 4, 12)]
     public void WhenMultiplyThenReturnProduct(int x, int y, int product)
-        => When(() => Calculator.Multiply(x, y)).Then.Result.Is(product);
+        => When(() => Calculator.Multiply(x, y)).Result.Is(product);
 }
 ```
 
@@ -51,7 +51,7 @@ Within that folder, create one test-class per method to test.
 * Finally, create a test method, attributed with [Fact], for each logical assertion you want to make.
 * The assertion should first call Then, which executes the test and returns the result.
 * If there is only one test method in the Given-class, the call to `Given` can be placed in the chain before `Then`
-* You can for instance test if a certain value was returned by writing `Then.Result.Is([SomeValue])`.
+* You can for instance test if a certain value was returned by writing `Result.Is([SomeValue])`.
  
 Example:
 ```
@@ -65,12 +65,12 @@ public abstract class WhenAddTwoNumbers : StaticSpec<int>
     public class Given_1_And_1 : WhenAdd // Using Set to arrange
     {
         protected override void Set() => (X, Y) = (1, 1);
-        [Fact] public void ThenReturn_3() => Then.Result.Is(3);
+        [Fact] public void ThenReturn_3() => Result.Is(3);
     }
 
     public class Given_3_And_4 : WhenAdd // Using Given to arrange
     {
-        [Fact] public void ThenReturn_7() => Given(() => (X, Y) = (3, 4)).Then.Result.Is(7);
+        [Fact] public void ThenReturn_7() => Given(() => (X, Y) = (3, 4)).Result.Is(7);
     }
 }
 ```

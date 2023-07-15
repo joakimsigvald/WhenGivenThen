@@ -13,12 +13,12 @@ public abstract class WhenCreateCart : AsyncShoppingServiceSpec<ShoppingCart>
     public class GivenIdIsOne : WhenCreateCart
     {
         public GivenIdIsOne() => Given(() => Id = 1);
-        [Fact] public void ThenCartIdIsOne() => Then.Result.Id.Is(Id);
+        [Fact] public void ThenCartIdIsOne() => Result.Id.Is(Id);
     }
 
     public class GivenIdIsTwo : WhenCreateCart
     {
         public GivenIdIsTwo() => Given(() => Id = 2);
-        [Fact] public void ThenCartIdIsTwo() => Then.Result.Id.Is(Id);
+        [Fact] public void ThenCartIdIsTwo() => Result.Id.Is(Id);
     }
 }

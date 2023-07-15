@@ -1,72 +1,107 @@
-﻿using System;
-using Xunit;
+﻿using FluentAssertions;
+using System;
 
 namespace WhenGivenThen.Assertions;
 
 public static class ValueAssertions
 {
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().Be(expected)
     /// </summary>
-    public static void Is<TValue>(this TValue actual, TValue expected) where TValue : struct
-        => Assert.Equal(expected, actual);
+    public static AndConstraint<FluentAssertions.Primitives.ObjectAssertions> Is<TValue>(
+        this TValue actual, TValue expected) where TValue : struct
+        => actual.Should().Be(expected);
 
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().BeApproximately(expected, precision)
     /// </summary>
-    public static void Is(this decimal actual, decimal expected, int precision)
-        => Assert.Equal(expected, actual, precision);
+    public static AndConstraint<FluentAssertions.Numeric.NumericAssertions<decimal>> Is(
+        this decimal actual, decimal expected, decimal precision)
+        => actual.Should().BeApproximately(expected, precision);
 
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().BeGreaterThan(expected)
     /// </summary>
-    public static void Is(this double actual, double expected, int precision)
-        => Assert.Equal(expected, actual, precision);
+    public static AndConstraint<FluentAssertions.Numeric.ComparableTypeAssertions<TValue>> IsGreaterThan<TValue>(
+        this TValue actual, TValue expected)
+        where TValue : struct, IComparable<TValue>
+        => actual.Should().BeGreaterThan(expected);
 
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().BeLessThan(expected)
     /// </summary>
-    public static void Is(this DateTime actual, DateTime expected, TimeSpan precision)
-        => Assert.Equal(expected, actual, precision);
+    public static AndConstraint<FluentAssertions.Numeric.ComparableTypeAssertions<TValue>> IsLessThan<TValue>(
+        this TValue actual, TValue expected)
+        where TValue : struct, IComparable<TValue>
+        => actual.Should().BeLessThan(expected);
 
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().BeLessThanOrEqualTo(expected)
     /// </summary>
-    public static void Is(this double actual, double expected, double tolerance)
-        => Assert.Equal(expected, actual, tolerance);
+    public static AndConstraint<FluentAssertions.Numeric.ComparableTypeAssertions<TValue>> IsNotGreaterThan<TValue>(
+        this TValue actual, TValue expected)
+        where TValue : struct, IComparable<TValue>
+        => actual.Should().BeLessThanOrEqualTo(expected);
 
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().BeGreaterThanOrEqualTo(expected)
     /// </summary>
-    public static void Is(this float actual, float expected, double tolerance)
-        => Assert.Equal(expected, actual, tolerance);
+    public static AndConstraint<FluentAssertions.Numeric.ComparableTypeAssertions<TValue>> IsNotLessThan<TValue>(
+        this TValue actual, TValue expected)
+        where TValue : struct, IComparable<TValue>
+        => actual.Should().BeGreaterThanOrEqualTo(expected);
 
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().BeCloseTo(expected, precision)
     /// </summary>
-    public static void Is(this string actual,
-        string expected, bool ignoreCase, bool ignoreLineEndingDifferences, bool ignoreWhiteSpaceDifferences)
-        => Assert.Equal(expected, actual, ignoreCase, ignoreLineEndingDifferences, ignoreWhiteSpaceDifferences);
+    public static AndConstraint<FluentAssertions.Primitives.DateTimeAssertions> Is(
+        this DateTime actual, DateTime expected, TimeSpan precision)
+        => actual.Should().BeCloseTo(expected, precision);
 
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().BeApproximately(expected, precision)
     /// </summary>
-    public static void Is(this double actual, double expected, int precision, MidpointRounding rounding)
-        => Assert.Equal(expected, actual, precision, rounding);
+    public static AndConstraint<FluentAssertions.Numeric.NumericAssertions<double>> Is(
+        this double actual, double expected, double precision)
+        => actual.Should().BeApproximately(expected, precision);
 
     /// <summary>
-    /// Assert.NotEqual
+    /// actual.Should().BeApproximately(expected, precision)
     /// </summary>
-    public static void IsNot<TValue>(this TValue actual, TValue expected) where TValue : struct
-        => Assert.NotEqual(expected, actual);
+    public static AndConstraint<FluentAssertions.Numeric.NumericAssertions<float>> Is(
+        this float actual, float expected, float precision)
+        => actual.Should().BeApproximately(expected, precision);
 
     /// <summary>
-    /// Assert.True
+    /// actual.Should().Be(expected)
     /// </summary>
-    public static void IsTrue(this bool actual) => Assert.True(actual);
+    public static AndConstraint<FluentAssertions.Primitives.StringAssertions> Is(
+        this string actual, string expected)
+        => actual.Should().Be(expected);
 
     /// <summary>
-    /// Assert.False
+    /// actual.Should().BeEquivalentTo(expected)
     /// </summary>
-    public static void IsFalse(this bool actual) => Assert.False(actual);
+    public static AndConstraint<FluentAssertions.Primitives.StringAssertions> IsIgnoringCase(
+        this string actual, string expected)
+        => actual.Should().BeEquivalentTo(expected);
+
+    /// <summary>
+    /// actual.Should().NotBe(expected)
+    /// </summary>
+    public static AndConstraint<FluentAssertions.Primitives.ObjectAssertions> IsNot<TValue>(
+        this TValue actual, TValue expected) where TValue : struct
+        => actual.Should().NotBe(expected);
+
+    /// <summary>
+    /// actual.Should().BeTrue()
+    /// </summary>
+    public static AndConstraint<FluentAssertions.Primitives.BooleanAssertions> IsTrue(this bool actual) 
+        => actual.Should().BeTrue();
+
+    /// <summary>
+    /// actual.Should().BeFalse()
+    /// </summary>
+    public static AndConstraint<FluentAssertions.Primitives.BooleanAssertions> IsFalse(this bool actual) 
+        => actual.Should().BeFalse();
 }

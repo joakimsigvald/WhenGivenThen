@@ -1,68 +1,62 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using System.Linq.Expressions;
 
 namespace WhenGivenThen.Assertions;
 
 public static class ListAssertions
 {
     /// <summary>
-    /// Assert.Empty
+    /// actual.Should().BeEmpty()
     /// </summary>
-    public static void IsEmpty<TItem>(this IEnumerable<TItem> actual)
-        => Assert.Empty(actual);
+    public static AndConstraint<FluentAssertions.Collections.GenericCollectionAssertions<TValue>> IsEmpty<TValue>(
+        this IEnumerable<TValue> actual)
+        => actual.Should().BeEmpty();
 
     /// <summary>
-    /// Assert.NotEmpty
+    /// actual.Should().NotBeEmpty()
     /// </summary>
-    public static void IsNotEmpty<TItem>(this IEnumerable<TItem> actual)
-        => Assert.NotEmpty(actual);
+    public static AndConstraint<FluentAssertions.Collections.GenericCollectionAssertions<TValue>> IsNotEmpty<TValue>(
+        this IEnumerable<TValue> actual)
+        => actual.Should().NotBeEmpty();
 
     /// <summary>
-    /// Assert.Single
+    /// actual.Should().ContainSingle()
     /// </summary>
-    public static void HasOne<TItem>(this IEnumerable<TItem> actual) => Assert.Single(actual);
+    public static AndConstraint<FluentAssertions.Collections.GenericCollectionAssertions<TValue>> ContainsSingle<TValue>(
+        this IEnumerable<TValue> actual)
+        => actual.Should().ContainSingle();
 
     /// <summary>
-    /// actual.HasOne(it => predicate(it).IsTrue());
+    /// actual.Should().ContainSingle()
     /// </summary>
-    public static void HasOne<TItem>(this IEnumerable<TItem> actual, Func<TItem, bool> predicate)
-        => actual.HasOne(it => predicate(it).IsTrue());
+    public static AndConstraint<FluentAssertions.Collections.GenericCollectionAssertions<TItem>> ContainsSingle<TItem>(
+        this IEnumerable<TItem> actual, Expression<Func<TItem, bool>> predicate)
+        => actual.Should().ContainSingle(predicate);
 
     /// <summary>
-    /// assertion(Assert.Single(actual));
+    /// actual.Should().HaveCount(expected)
     /// </summary>
-    public static void HasOne<TItem>(this IEnumerable<TItem> actual, Action<TItem> assertion) 
-        => assertion(Assert.Single(actual));
+    public static AndConstraint<FluentAssertions.Collections.GenericCollectionAssertions<TItem>> HasCount<TItem>(
+        this IEnumerable<TItem> actual, int expected)
+        => actual.Should().HaveCount(expected);
 
     /// <summary>
-    /// actual.Count().Is(expected)
+    /// collection.Select((it, i) => (it, i)).Should().OnlyContain(t => predicate(t.it, t.i))
     /// </summary>
-    public static void HasCount<TItem>(this IEnumerable<TItem> actual, int expected)
-        => actual.Count().Is(expected);
+    public static AndConstraint<FluentAssertions.Collections.GenericCollectionAssertions<(TItem, int)>> Each<TItem>(
+        this IEnumerable<TItem> collection,
+        Func<TItem, int, bool> predicate, string because = "", params object[] becauseArgs)
+        => collection.Select((it, i) => (it, i)).
+            Should().OnlyContain(t => predicate(t.it, t.i), because, becauseArgs);
 
     /// <summary>
-    /// actual.Each(it => predicate(it).IsTrue());
+    /// collection.Select((it, i) => (it, i)).Should().OnlyContain(t => predicate(t.it, t.i))
     /// </summary>
-    public static void Each<TItem>(this IEnumerable<TItem> actual, Func<TItem, bool> predicate)
-        => actual.Each(it => predicate(it).IsTrue());
-
-    /// <summary>
-    /// actual.ToList().ForEach(item => assertion(item));
-    /// </summary>
-    public static void Each<TItem>(this IEnumerable<TItem> actual, Action<TItem> assertion)
-        => actual.ToList().ForEach(item => assertion(item));
-
-    /// <summary>
-    /// actual.Each((it, i) => predicate(it, i).IsTrue());
-    /// </summary>
-    public static void Each<TResult>(this IEnumerable<TResult> actual, Func<TResult, int, bool> predicate)
-        => actual.Each((it, i) => predicate(it, i).IsTrue());
-
-    /// <summary>
-    /// actual.Select((it, i) => (it, i)).Each(t => assertion(t.it, t.i));
-    /// </summary>
-    public static void Each<TResult>(this IEnumerable<TResult> actual, Action<TResult, int> assertion)
-        => actual.Select((it, i) => (it, i)).Each(t => assertion(t.it, t.i));
+    public static AndConstraint<FluentAssertions.Collections.GenericCollectionAssertions<TItem>> Each<TItem>(
+        this IEnumerable<TItem> collection,
+        Func<TItem, bool> predicate, string because = "", params object[] becauseArgs)
+        => collection.Should().OnlyContain(it => predicate(it), because, becauseArgs);
 }

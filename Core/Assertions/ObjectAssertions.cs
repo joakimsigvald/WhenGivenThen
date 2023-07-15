@@ -1,36 +1,41 @@
-﻿using Xunit;
+﻿using FluentAssertions;
 
 namespace WhenGivenThen.Assertions;
 
 public static class ObjectAssertions
 {
     /// <summary>
-    /// Assert.Same
+    /// actual.Should().BeSameAs(expected)
     /// </summary>
-    public static void Is(this object actual, object expected)
-        => Assert.Same(expected, actual);
+    public static AndConstraint<FluentAssertions.Primitives.ObjectAssertions> Is(
+        this object actual, object expected)
+        => actual.Should().BeSameAs(expected);
 
     /// <summary>
-    /// Assert.NotSame
+    /// actual.Should().NotBeSameAs(expected)
     /// </summary>
-    public static void IsNot(this object actual, object expected)
-        => Assert.NotSame(expected, actual);
+    public static AndConstraint<FluentAssertions.Primitives.ObjectAssertions> IsNot(
+        this object actual, object expected)
+        => actual.Should().NotBeSameAs(expected);
 
     /// <summary>
-    /// Assert.Equal
+    /// actual.Should().Be(expected)
     /// </summary>
-    public static void IsEqualTo(this object actual, object expected)
-        => Assert.Equal(expected, actual);
+    public static AndConstraint<FluentAssertions.Primitives.ObjectAssertions> IsEqualTo(
+        this object actual, object expected)
+        => actual.Should().Be(expected);
 
     /// <summary>
-    /// Assert.NotEqual
+    /// actual.Should().NotBe(expected)
     /// </summary>
-    public static void IsNotEqualTo(this object actual, object expected)
-        => Assert.NotEqual(expected, actual);
+    public static AndConstraint<FluentAssertions.Primitives.ObjectAssertions> IsNotEqualTo(
+        this object actual, object expected)
+        => actual.Should().NotBe(expected);
 
     /// <summary>
-    /// Assert.Equivalent
+    /// actual.Should().BeEquivalentTo(expected)
     /// </summary>
-    public static void IsLike(this object actual, object expected)
-        => Assert.Equivalent(expected, actual);
+    public static AndConstraint<FluentAssertions.Primitives.ObjectAssertions> IsLike(
+        this object actual, object expected)
+        => actual.Should().BeEquivalentTo(expected);
 }
