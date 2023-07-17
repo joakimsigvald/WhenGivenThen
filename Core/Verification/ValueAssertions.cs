@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using System;
 
-namespace WhenGivenThen.Assertions;
+namespace WhenGivenThen.Verification;
 
 public static class ValueAssertions
 {

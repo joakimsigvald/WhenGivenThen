@@ -1,5 +1,6 @@
 ﻿using Moq;
-namespace WhenGivenThen;
+
+namespace WhenGivenThen.Verification;
 
 public interface IMocked
 {

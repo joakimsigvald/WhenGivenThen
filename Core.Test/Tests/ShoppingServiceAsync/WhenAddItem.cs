@@ -2,11 +2,12 @@
 using System.Linq;
 using Xunit;
 using WhenGivenThen.Test.Subjects;
-using WhenGivenThen.Assertions;
+using WhenGivenThen.Verification;
+using WhenGivenThen.Fixture;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public abstract class WhenAddItem : AsyncShoppingServiceSpec<ShoppingCart>
+public abstract class WhenAddItem : ShoppingServiceAsyncSpec<ShoppingCart>
 {
     protected int CartId = 123;
     protected ShoppingCartItem[] CartItems;
@@ -15,7 +16,7 @@ public abstract class WhenAddItem : AsyncShoppingServiceSpec<ShoppingCart>
     protected WhenAddItem() => When(() => SUT.AddToCart(CartId, NewItem))
         .Given(
         () => CartItems ??= Array.Empty<ShoppingCartItem>(),
-        () => Make<IShoppingCartRepository>()
+        () => GetMock<IShoppingCartRepository>()
         .Setup(repo => repo.GetCart(CartId))
         .ReturnsAsync(new ShoppingCart { Id = CartId, Items = CartItems }));
 
@@ -30,6 +31,7 @@ public abstract class WhenAddItem : AsyncShoppingServiceSpec<ShoppingCart>
     public class GivenCartWithOneItem : WhenAddItem
     {
         public GivenCartWithOneItem() => Given(() => CartItems = new[] { new ShoppingCartItem("A1") });
+        [Fact] public void ThenDoNotThrow() => Then.NotThrows();
         [Fact] public void ThenCartHasTwoItems() => Result.Items.Length.Is(2);
         [Fact] public void ThenNewItemIsLast() => Result.Items.Last().Sku.Is(NewItem.Sku);
         [Fact] public void ThenNewItemIsCloned() => Result.Items.Last().IsNot(NewItem);

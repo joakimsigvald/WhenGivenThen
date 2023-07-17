@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WhenGivenThen.Verification;
 
-namespace WhenGivenThen;
+namespace WhenGivenThen.Fixture;
 
 /// <summary>
 /// Not intended for direct override. Override one of TestStatic, TestSubject, TestStaticAsync or TestSubjectAsync instead

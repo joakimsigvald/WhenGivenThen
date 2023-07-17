@@ -1,8 +1,7 @@
-﻿using WhenGivenThen.Test.Subjects;
+﻿using WhenGivenThen.Fixture;
 
 namespace WhenGivenThen.Test.Tests.ShoppingService;
 
 public abstract class ShoppingServiceSpec<TResult> : SubjectSpec<Subjects.ShoppingService, TResult>
 {
-    protected override Subjects.ShoppingService CreateSUT() => new(The<IOrderService>());
 }

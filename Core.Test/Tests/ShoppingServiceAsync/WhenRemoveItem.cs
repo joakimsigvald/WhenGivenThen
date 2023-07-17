@@ -1,10 +1,11 @@
 ﻿using Xunit;
 using WhenGivenThen.Test.Subjects;
-using WhenGivenThen.Assertions;
+using WhenGivenThen.Fixture;
+using WhenGivenThen.Verification;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public abstract class WhenRemoveItem : AsyncShoppingServiceSpec<ShoppingCart>
+public abstract class WhenRemoveItem : ShoppingServiceAsyncSpec<ShoppingCart>
 {
     protected int CartId = 123;
     protected ShoppingCartItem[] CartItems;
@@ -16,9 +17,9 @@ public abstract class WhenRemoveItem : AsyncShoppingServiceSpec<ShoppingCart>
     protected ShoppingCart Cart => _cart ??= new() { Id = CartId, Items = CartItems };
 
     protected override void Setup()
-        => Make<IShoppingCartRepository>()
-            .Setup(repo => repo.GetCart(CartId))
-            .ReturnsAsync(new ShoppingCart { Id = CartId, Items = CartItems });
+        => GetMock<IShoppingCartRepository>()
+        .Setup(repo => repo.GetCart(CartId))
+        .ReturnsAsync(new ShoppingCart { Id = CartId, Items = CartItems });
 
     public class GivenCartWithOneItem : WhenRemoveItem
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Moq.Language.Flow;
 
-namespace WhenGivenThen;
+namespace WhenGivenThen.Fixture;
 
 public static class Extensions
 {

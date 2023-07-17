@@ -1,10 +1,10 @@
 ﻿using Xunit;
 using WhenGivenThen.Test.Subjects;
-using WhenGivenThen.Assertions;
+using WhenGivenThen.Verification;
 
 namespace WhenGivenThen.Test.Tests.AsyncShoppingService;
 
-public abstract class WhenCreateCart : AsyncShoppingServiceSpec<ShoppingCart>
+public abstract class WhenCreateCart : ShoppingServiceAsyncSpec<ShoppingCart>
 {
     protected int Id;
 

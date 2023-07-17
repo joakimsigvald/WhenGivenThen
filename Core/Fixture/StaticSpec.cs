@@ -1,4 +1,4 @@
-﻿namespace WhenGivenThen;
+﻿namespace WhenGivenThen.Fixture;
 
 public abstract class StaticSpec<TResult> : Spec<TResult>
 {

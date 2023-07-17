@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 
-namespace WhenGivenThen.Assertions;
+namespace WhenGivenThen.Verification;
 
 public static class ObjectAssertions
 {

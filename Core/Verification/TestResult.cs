@@ -3,7 +3,7 @@ using System;
 using System.Linq.Expressions;
 using Xunit;
 
-namespace WhenGivenThen;
+namespace WhenGivenThen.Verification;
 
 public class TestResult<TResult>
 {

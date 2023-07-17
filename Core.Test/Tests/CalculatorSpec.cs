@@ -1,4 +1,5 @@
-﻿using WhenGivenThen.Assertions;
+﻿using WhenGivenThen.Verification;
+using WhenGivenThen.Fixture;
 using WhenGivenThen.Test.Subjects;
 using Xunit;
 

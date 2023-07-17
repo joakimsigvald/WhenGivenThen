@@ -1,4 +1,4 @@
-﻿namespace WhenGivenThen;
+﻿namespace WhenGivenThen.Fixture;
 
 /// <summary>
 /// Not intended for direct override. Override either TestStatic or TestSubject instead

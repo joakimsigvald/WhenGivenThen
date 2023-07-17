@@ -9,21 +9,22 @@
 	  <RootNamespace>WhenGivenThen</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
-    <PackageTags>test unit given when then mock xunit moq</PackageTags>
+    <PackageTags>unit test given when then fluent mock automock xunit moq</PackageTags>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen.git</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>4.1.2</PackageVersion>
+    <PackageVersion>4.2.0</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>Changed icon</PackageReleaseNotes>
+    <PackageReleaseNotes>Use Moq.AutoMock to generate mocks</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="Moq.AutoMock" Version="3.5.0" />
     <PackageReference Include="xunit" Version="2.5.0" />
     <PackageReference Include="FluentAssertions" Version="6.11.0" />
     <None Include="..\README.md" Pack="true" PackagePath="\" />

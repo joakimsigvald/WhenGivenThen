@@ -2,9 +2,20 @@
 
 public class ShoppingService
 {
-    private readonly IOrderService _anotherService;
+    private readonly IOrderService _orderService;
+    private readonly ILogger _logger;
 
-    public ShoppingService(IOrderService orderService) => _anotherService = orderService;
+    public ShoppingService(IOrderService orderService, ILogger logger)
+    {
+        _orderService = orderService;
+        _logger = logger;
+    }
+
     public ShoppingCart CreateCart(int id) => new() { Id = id };
-    public void PlaceOrder(ShoppingCart cart) => _anotherService.CreateOrder(cart);
+
+    public void PlaceOrder(ShoppingCart cart)
+    {
+        _orderService.CreateOrder(cart);
+        _logger.ForContext("CartId", cart.Id).Information("Order created");
+    }
 }

@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using WhenGivenThen.Test.Subjects;
-using WhenGivenThen.Assertions;
+using WhenGivenThen.Verification;
 
 namespace WhenGivenThen.Test.Tests.ShoppingService;
 

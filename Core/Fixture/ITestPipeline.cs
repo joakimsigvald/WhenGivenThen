@@ -1,6 +1,7 @@
 ﻿using System;
+using WhenGivenThen.Verification;
 
-namespace WhenGivenThen;
+namespace WhenGivenThen.Fixture;
 
 public interface ITestPipeline<TResult>
 {
