@@ -10,10 +10,32 @@ public abstract class WhenPlaceOrder : ShoppingServiceSpec<object>
 
     protected WhenPlaceOrder() => When(() => SUT.PlaceOrder(Cart));
 
-    public class GivenCart : WhenPlaceOrder
+    public abstract class GivenCart : WhenPlaceOrder
     {
-        public GivenCart() => Given(() => Cart = new());
+        protected GivenCart() => Given(() => Cart = new());
         [Fact] public void ThenOrderIsCreated() => Then.The<IOrderService>(_ => _.CreateOrder(Cart));
-        [Fact] public void ThenLogOrderCreated() => Then.The<ILogger>(_ => _.Information(It.IsAny<string>()));
+    }
+
+    public class AndShopName : GivenCart
+    {
+        private const string _shopName = "BookShop";
+
+        public AndShopName() => Use((_shopName, ""));
+
+        [Fact]
+        public void ThenLogOrderCreatedWithShopName()
+            => Then.The<ILogger>(_ => _.Information(It.Is<string>(s => s.Contains(_shopName))));
+    }
+
+    public class AndShopNameAndDivision : GivenCart
+    {
+        private const string _shopName = "BookShop";
+        private const string _division = "Fiction";
+
+        public AndShopNameAndDivision() => Use((_shopName, _division));
+
+        [Fact]
+        public void ThenLogOrderCreatedWithDivision()
+            => Then.The<ILogger>(_ => _.Information(It.Is<string>(s => s.Contains(_division))));
     }
 }

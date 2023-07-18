@@ -29,9 +29,6 @@ public class TestResult<TResult>
         assert(ex);
     }
 
-    public void The<TObject>() where TObject : class
-        => Mocked<TObject>().Verify();
-
     public void The<TObject>(Expression<Action<TObject>> expression) where TObject : class
         => Mocked<TObject>().Verify(expression);
 

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Moq;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
 using WhenGivenThen.Verification;
 
 namespace WhenGivenThen.Fixture;
@@ -26,6 +29,20 @@ public abstract class SpecBase<TResult> : Mocking, ITestPipeline<TResult>, IDisp
         return this;
     }
 
+    public ITestPipeline<TResult> Use<TValue>([DisallowNull] TValue value)
+        => Given(() => Mocker.Use(value));
+
+    public ITestPipeline<TResult> Use(Type type, object value)
+        => Given(() => Mocker.Use(type, value));
+
+    public ITestPipeline<TResult> Use<TService>(Mock<TService> mockedService)
+        where TService : class
+        => Given(() => Mocker.Use(mockedService));
+
+    public ITestPipeline<TResult> Use<TService>(Expression<Func<TService, bool>> setup)
+        where TService : class
+        => Given(() => Mocker.Use(setup));
+
     public TestResult<TResult> Then => _then ??= CreateTestResult();
 
     public abstract void Dispose();
@@ -46,7 +63,8 @@ public abstract class SpecBase<TResult> : Mocking, ITestPipeline<TResult>, IDisp
             throw new InvalidOperationException("When must be called before Given");
         if (_then != null)
             throw new InvalidOperationException("When must be called before Then");
-        (_command, _function) = (command, function); return this;
+        (_command, _function) = (command, function);
+        return this;
     }
 
     protected virtual void Set() { }
@@ -57,12 +75,17 @@ public abstract class SpecBase<TResult> : Mocking, ITestPipeline<TResult>, IDisp
 
     private TestResult<TResult> CreateTestResult()
     {
+        ProvideDefaultsForTuples();
         Set();
         foreach (var arrange in _arrangements) arrange();
         Setup();
         Instantiate();
         CatchError(_command ?? GetResult);
         return new(_result, _error, this);
+    }
+
+    protected virtual void ProvideDefaultsForTuples()
+    {
     }
 
     private void GetResult() => _result = _function();
