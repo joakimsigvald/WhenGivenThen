@@ -16,11 +16,18 @@
     <PackageProjectUrl>https://github.com/joakimsigvald/WhenGivenThen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/joakimsigvald/WhenGivenThen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>4.2.0</PackageVersion>
+    <PackageVersion>4.3.0</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>Use Moq.AutoMock to generate mocks</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Breaking changes:
+      - Renamed Use -> Using
+      - Renamed The -> Does for mock verification
+      - Run use before set and given
+      Non-breaking changes:
+      - supply up to three using values at once
+    </PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.18.4" />

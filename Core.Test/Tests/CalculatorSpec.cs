@@ -1,7 +1,8 @@
 ﻿using WhenGivenThen.Verification;
 using WhenGivenThen.Fixture;
-using WhenGivenThen.Test.Subjects;
 using Xunit;
+
+using static WhenGivenThen.Test.Subjects.Calculator;
 
 namespace WhenGivenThen.Test.Tests;
 
@@ -11,20 +12,20 @@ public class CalculatorSpec : StaticSpec<int>
     [InlineData(1, 1, 2)]
     [InlineData(3, 4, 7)]
     public void WhenAdd_ThenReturnSum(int x, int y, int sum)
-    => When(() => Calculator.Add(x, y)).Then.Result.Is(sum);
+        => When(() => Add(x, y)).Then.Result.Is(sum);
 
     [Theory]
     [InlineData(1, 1, 1)]
     [InlineData(3, 4, 12)]
     public void WhenMultiply_ThenReturnProduct(int x, int y, int product)
-        => When(() => Calculator.Multiply(x, y)).Then.Result.Is(product);
+        => When(() => Multiply(x, y)).Then.Result.Is(product);
 }
 
 public abstract class WhenAdd : StaticSpec<int>
 {
     protected int X;
     protected int Y;
-    public WhenAdd() => When(() => Calculator.Add(X, Y));
+    public WhenAdd() => When(() => Add(X, Y));
 
     public class Given_1_1 : WhenAdd
     {

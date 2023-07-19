@@ -25,7 +25,7 @@ public abstract class WhenAddItem : ShoppingServiceAsyncSpec<ShoppingCart>
         [Fact] public void ThenCartIsNotEmpty() => Result.Items.IsNotEmpty();
         [Fact] public void ThenCartHasOneItem() => Result.Items.ContainsSingle();
         [Fact] public void TheIdIsPreserved() => Result.Id.Is(CartId);
-        [Fact] public void ThenCartIsStored() => Then.The<IShoppingCartRepository>(_ => _.StoreCart(Result));
+        [Fact] public void ThenCartIsStored() => Then.Does<IShoppingCartRepository>(_ => _.StoreCart(Result));
     }
 
     public class GivenCartWithOneItem : WhenAddItem

@@ -6,6 +6,6 @@ namespace WhenGivenThen.Fixture;
 public interface ITestPipeline<TResult>
 {
     ITestPipeline<TResult> Given(params Action[] arrangements);
-    ITestPipeline<TResult> Use<TValue>(TValue value);
+    ITestPipeline<TResult> Using<TValue>(TValue value);
     TestResult<TResult> Then { get; }
 }

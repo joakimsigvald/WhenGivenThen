@@ -4,7 +4,4 @@ public abstract class SubjectSpecAsync<ISUT, TResult> : SpecAsync<TResult> where
 {
     protected ISUT SUT { get; private set; }
     protected override sealed void Instantiate() => SUT = Mocker.CreateInstance<ISUT>();
-    protected override sealed void ProvideDefaultsForTuples()
-    {
-    }
 }

@@ -29,23 +29,23 @@ public class TestResult<TResult>
         assert(ex);
     }
 
-    public void The<TObject>(Expression<Action<TObject>> expression) where TObject : class
+    public void Does<TObject>(Expression<Action<TObject>> expression) where TObject : class
         => Mocked<TObject>().Verify(expression);
 
-    public void The<TObject>(Expression<Action<TObject>> expression, Times times) where TObject : class
+    public void Does<TObject>(Expression<Action<TObject>> expression, Times times) where TObject : class
         => Mocked<TObject>().Verify(expression, times);
 
-    public void The<TObject>(Expression<Action<TObject>> expression, Func<Times> times) where TObject : class
+    public void Does<TObject>(Expression<Action<TObject>> expression, Func<Times> times) where TObject : class
         => Mocked<TObject>().Verify(expression, times);
 
-    public void The<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression) where TObject : class
+    public void Does<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression) where TObject : class
         => Mocked<TObject>().Verify(expression);
 
-    public void The<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression, Times times)
+    public void Does<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression, Times times)
         where TObject : class
         => Mocked<TObject>().Verify(expression, times);
 
-    public void The<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression, Func<Times> times)
+    public void Does<TObject, TReturns>(Expression<Func<TObject, TReturns>> expression, Func<Times> times)
         where TObject : class
         => Mocked<TObject>().Verify(expression, times);
 

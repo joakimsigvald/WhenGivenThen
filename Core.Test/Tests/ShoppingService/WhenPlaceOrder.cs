@@ -12,30 +12,37 @@ public abstract class WhenPlaceOrder : ShoppingServiceSpec<object>
 
     public abstract class GivenCart : WhenPlaceOrder
     {
-        protected GivenCart() => Given(() => Cart = new());
-        [Fact] public void ThenOrderIsCreated() => Then.The<IOrderService>(_ => _.CreateOrder(Cart));
-    }
+        protected const int ShopId = 123;
 
-    public class AndShopName : GivenCart
-    {
-        private const string _shopName = "BookShop";
-
-        public AndShopName() => Use((_shopName, ""));
+        protected GivenCart() => Using(ShopId).Given(() => Cart = new());
+        [Fact] public void ThenOrderIsCreated() => Then.Does<IOrderService>(_ => _.CreateOrder(Cart));
 
         [Fact]
-        public void ThenLogOrderCreatedWithShopName()
-            => Then.The<ILogger>(_ => _.Information(It.Is<string>(s => s.Contains(_shopName))));
-    }
+        public void ThenAddShopIdToLogContext()
+            => Then.Does<ILogger>(_ => _.ForContext("ShopId", ShopId));
 
-    public class AndShopNameAndDivision : GivenCart
-    {
-        private const string _shopName = "BookShop";
-        private const string _division = "Fiction";
+        public class AndShopName : GivenCart
+        {
+            private const string _shopName = "BookShop";
 
-        public AndShopNameAndDivision() => Use((_shopName, _division));
+            public AndShopName() => Using((_shopName, ""));
 
-        [Fact]
-        public void ThenLogOrderCreatedWithDivision()
-            => Then.The<ILogger>(_ => _.Information(It.Is<string>(s => s.Contains(_division))));
+            [Fact]
+            public void ThenLogOrderCreated_With_ShopName()
+                => Then.Does<ILogger>(_ => _.Information(It.Is<string>(s => s.Contains(_shopName))));
+        }
+
+        public class AndShopNameAndDivision : GivenCart
+        {
+            private const string _shopName = "BookShop";
+            private const string _division = "Fiction";
+
+            public AndShopNameAndDivision() => Using((_shopName, _division));
+
+            [Fact]
+            public void ThenLogOrderCreated_With_ShopNameAndDivision()
+                => Then.Does<ILogger>(_ => _.Information(It.Is<string>(
+                    s => s.Contains(_shopName) && s.Contains(_division))));
+        }
     }
 }
