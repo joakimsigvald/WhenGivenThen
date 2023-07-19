@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WhenGivenThen.Test.Subjects;
+﻿namespace WhenGivenThen.Test.Subjects;
 
 public class Calculator
 {

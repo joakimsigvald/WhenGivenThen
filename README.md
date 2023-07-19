@@ -1,7 +1,7 @@
 # When-Given-Then: A fluent unit testing framework
 
 Framework for writing and running automated tests in .Net in a flexible and fluent style, 
-based on the popular "Given-When-Then" pattern, built upon XUnit, Moq and FluentAssertions.
+based on the popular "Given-When-Then" pattern, built upon XUnit, Moq, AutoMock and FluentAssertions.
 
 Whether you are beginner or expert in unit-testing, this framework will help you to write more descriptive tests with less code.
 
@@ -109,12 +109,14 @@ public abstract class WhenVerifyAreEqual : StaticSpec<object>
 ### Test a class with dependencies
 * To test an instance method `[MyClass].[MyMethod]`, inherit `WhenGivenThen.SubjectSpec<[MyClass], TResult>`.
 * It is recommended practice to create a common baseclass for all tests of `[MyClass]`, named `[MyClass]Spec`.
-* Override the method CreateSUT and return a new instance of `[MyClass]`.
+* The subject under test (sut) will be created automatically with mocks and default values by AutoMock. 
+You can supply you own constructor arguments by calling `Using` (which will be applied in the same order when test pipeline is executed).
 * For each method to test, create an abstract class named `When[MyMethod]` inheriting `[MyClass]Spec` in the same way as for static methods.
 
-* To mock behaviour of any dependency, either override `Setup` or provide the mocking by calling `Given`. Each call to `Given` will provide additional arrangement that will be applied on test execution on the inversed order.
+* To mock behaviour of any dependency, either override `Setup` or provide the mocking by calling `Given`. 
+Each call to `Given` will provide additional arrangement that will be applied on test execution on the inversed order.
 * The framework gives you direct access to one (lazily generated) mock each of any class type type. You can access a mock by `The<MyMockedInterface>()`.
-* To verify a call to a dependency, write `Then.The<MyMockedInterface>([SomeLambdaExpression])`. 
+* To verify a call to a dependency, write `Then.Does<MyMockedInterface>([SomeLambdaExpression])`. 
 * Moq framework is used to express both mocking and verification of behaviour.
  
 Example:
@@ -123,7 +125,7 @@ namespace MyProject.Test.ShoppingService;
 
 public abstract class ShoppingServiceSpec<TResult> : SubjectSpec<MyProject.ShoppingService, TResult>
 {
-    protected override Subjects.ShoppingService CreateSUT() => new(The<ICartRepository>(), The<IOrderService>());
+    protected ShoppingServiceSpec() => Using(new MyTestLogger());
 }
 
 public abstract class WhenPlaceOrder : ShoppingServiceSpec<object>
@@ -136,7 +138,7 @@ public abstract class WhenPlaceOrder : ShoppingServiceSpec<object>
     public class GivenCart : WhenPlaceOrder
     {
         [Fact] public void ThenOrderIsCreated() 
-            => Given(() => Cart = new()).Then.The<IOrderService>(_ => _.CreateOrder(Cart));
+            => Given(() => Cart = new()).Then.Does<IOrderService>(_ => _.CreateOrder(Cart));
     }
 }
 ```

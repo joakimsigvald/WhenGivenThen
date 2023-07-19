@@ -12,7 +12,7 @@ public class CalculatorSpec : StaticSpec<int>
     [InlineData(1, 1, 2)]
     [InlineData(3, 4, 7)]
     public void WhenAdd_ThenReturnSum(int x, int y, int sum)
-        => When(() => Add(x, y)).Then.Result.Is(sum);
+        => When<int, int>(Add).Given(x, y).Then.Result.Is(sum);
 
     [Theory]
     [InlineData(1, 1, 1)]
@@ -23,20 +23,18 @@ public class CalculatorSpec : StaticSpec<int>
 
 public abstract class WhenAdd : StaticSpec<int>
 {
-    protected int X;
-    protected int Y;
-    public WhenAdd() => When(() => Add(X, Y));
+    public WhenAdd() => When<int, int>(Add);
 
     public class Given_1_1 : WhenAdd
     {
-        public Given_1_1() => (X, Y) = (1, 1);
+        public Given_1_1() => Given(1, 1);
         [Fact] public void Then_Return_2() => Result.Is(2);
         [Fact] public void Then_Return_Between_1_And_3() => Result.IsGreaterThan(1).And.BeLessThan(3);
     }
 
     public class Given_2_3 : WhenAdd
     {
-        public Given_2_3() => (X, Y) = (2, 3);
+        public Given_2_3() => Given(2, 3);
         [Fact] public void Then_Return_5() => Result.Is(5);
     }
 }
